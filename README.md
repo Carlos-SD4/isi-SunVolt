@@ -1,9 +1,9 @@
 # SunVolt
 
 Este proyecto ha sido desarrollado por los siguientes miembros del grupo:
-- nombre_del_miembro1
-- nombre_del_miembro2
-- nombre_del_miembro3
+- Javier Pardo González
+- Carlos Sánchez Díaz
+- Pablo Díaz Calderón
 
 ## Manual de Uso
 
