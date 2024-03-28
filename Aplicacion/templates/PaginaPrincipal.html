@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Statistics</title>
+    <link rel="stylesheet" href="/static/styles/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Estadísticas del Tiempo</h1>
+        <div class="controls">
+            <select id="date-selector">
+                {% for prediccion in predicciones %}
+                <option value="{{ prediccion.fecha.strftime('%Y-%m-%d %H:%M:%S') }}">{{ prediccion.fecha.strftime('%Y-%m-%d %H:%M:%S') }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="stats" id="weather-stats">
+            {% for prediccion in predicciones %}
+            <div class="prediction" id="{{ prediccion.fecha.strftime('%Y-%m-%d %H:%M:%S') }}" style="display: none;">
+                <h2>{{ prediccion.fecha.strftime('%Y-%m-%d %H:%M:%S') }}</h2>
+                <p>Temperatura: {{ prediccion.temperatura }}°C</p>
+                <p>Humedad: {{ prediccion.humedad }}%</p>
+                <p>Nubosidad: {{ prediccion.nubosidad }}%</p>
+                <p>Probabilidad de Lluvia: {{ prediccion.probabilidad_lluvia }}%</p>
+                <p>Radiación Solar Estimada: {{ prediccion.radiacion_solar }} W/m^2</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script>
+        document.getElementById('date-selector').addEventListener('change', function() {
+            var selectedDate = this.value;
+            var predictions = document.getElementsByClassName('prediction');
+            for (var i = 0; i < predictions.length; i++) {
+                if (predictions[i].id === selectedDate) {
+                    predictions[i].style.display = 'block';
+                } else {
+                    predictions[i].style.display = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
