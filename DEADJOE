@@ -1,0 +1,38 @@
+
+*** These modified files were found in JOE when it aborted on Thu Mar 28 18:16:24 2024
+*** JOE was aborted by UNIX signal 1
+
+*** File '/home/javiipardo/Documentos/UCLM/3ºCurso/2ºCuatri/IntegracionSistemas/Laboratorio/Sprint 3/isi-SunVolt/.git/COMMIT_EDITMSG'
+
+# Por favor ingresa el mensaje del commit para tus cambios. Las
+#  líneas que comiencen con '#' serán ignoradas, y un mensaje
+#  vacío aborta el commit.
+#
+# En la rama main
+# Tu rama está actualizada con 'origin/main'.
+#
+# Cambios a ser confirmados:
+#	nuevos archivos: Aplicacion/app.py
+#	nuevos archivos: Aplicacion/static/scripts/scripst.js
+#	nuevos archivos: Aplicacion/static/styles/style.css
+#	nuevos archivos: Aplicacion/templates/index.html
+#
+
+*** File '(Unnamed)'
+Examen1.c
+Practicar1.c
+Practicar1.c
+Practicar1.c
+Practicar1.c
+repaso.c
+repaso.c
+repaso.c
+repaso.c
+repaso.c
+/home/javiipardo/Documentos/UCLM/3ºCurso/2ºCuatri/IntegracionSistemas/Laboratorio/Sprint 3/isi-SunVolt/.git/COMMIT_EDITMSG
+
+*** File '* Startup Log *'
+Processing '/etc/joe/editorrc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/editorrc
