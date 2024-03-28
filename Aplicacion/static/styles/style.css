@@ -1,0 +1,67 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2; /* Color de fondo */
+    margin: 0;
+    padding: 0;
+}
+
+.iphone-content img {
+    width: 200px; /* Ajusta el tamaño del logo */
+    display: block; /* Convierte la imagen en un elemento de bloque */
+    margin: 0 auto; /* Centra la imagen horizontalmente */
+    margin-bottom: 20px; /* Espacio entre el logo y el título */
+}
+
+/* Estilos del marco del iPhone */
+.iphone-frame {
+    position: relative;
+    width: 400px; /* Tamaño del marco del iPhone */
+    height: 800px; /* Tamaño del marco del iPhone */
+    margin: 50px auto; /* Centra el marco horizontalmente y añade un margen superior */
+    background-color: #fff; /* Color de fondo del marco del iPhone */
+    border-radius: 40px; /* Borde redondeado del marco del iPhone */
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); /* Sombra del marco del iPhone */
+    overflow: hidden; /* Oculta cualquier contenido que se desborde del marco del iPhone */
+}
+
+.iphone-content {
+    position: absolute;
+    top: 50%; /* Ajusta la posición vertical del contenido dentro del marco */
+    left: 50%; /* Centra el contenido horizontalmente */
+    transform: translate(-50%, -50%); /* Centra el contenido vertical y horizontalmente */
+    text-align: center;
+}
+
+.iphone-content h1 {
+    font-size: 25px; /* Tamaño del título */
+    margin-bottom: 20px; /* Espacio entre el título y el formulario */
+}
+
+/* Estilos de los campos de entrada */
+.iphone-content input {
+    width: 80%; /* Ajusta el ancho de los campos de entrada */
+    margin-bottom: 20px; /* Espacio entre los campos de entrada */
+    padding: 12px; /* Añade espacio interno a los campos de entrada */
+    box-sizing: border-box; /* Incluye el relleno en el tamaño total */
+    border: 1px solid #ccc; /* Borde del campo de entrada */
+    border-radius: 5px; /* Borde redondeado */
+}
+
+/* Estilos del botón de inicio de sesión */
+.iphone-content button {
+    width: 80%; /* Ajusta el ancho del botón */
+    padding: 12px; /* Tamaño del botón */
+    background-color: #007bff; /* Color de fondo del botón */
+    color: #fff; /* Color del texto del botón */
+    border: none; /* Quita el borde del botón */
+    border-radius: 5px; /* Borde redondeado */
+    cursor: pointer;
+    transition: background-color 0.3s; /* Transición suave del color de fondo */
+}
+
+/* Estilos del botón de inicio de sesión al pasar el cursor */
+.iphone-content button:hover {
+    background-color: #0056b3; /* Cambia el color de fondo al pasar el cursor */
+}
+
