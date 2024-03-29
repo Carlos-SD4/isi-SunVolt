@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> <!-- Falta ajustar las estadisticas del tiempo con las de la api -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recomendaciones</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2; /* Fondo gris claro */
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 2px solid black; /* Borde general negro */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff; /* Fondo blanco */
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .summary {
+            margin-bottom: 20px;
+            background-color: #f9f9f9; /* Fondo gris claro */
+            padding: 10px;
+            border: 1px solid #ccc; /* Borde gris */
+            border-radius: 5px;
+        }
+        .summary p {
+            margin: 5px 0;
+        }
+        .recommendations {
+            margin-bottom: 20px;
+        }
+        .recommendation-box {
+            border: 1px solid #ccc; /* Borde gris */
+            border-radius: 5px;
+            padding: 20px;
+            background-color: #f9f9f9; /* Fondo gris claro */
+        }
+        .recommendation-box h2 {
+            margin-bottom: 10px;
+        }
+        .recommendation-box p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Recomendaciones</h1>
+        <div class="summary">
+            <h2>Resumen de Estadísticas</h2>
+            <p><strong>Consumo de Energía:</strong> {{ predicciones_tiempo[0]['consumo_energia'] }} kWh</p>
+            <p><strong>Precio de la Luz:</strong> {{ "%0.2f" % precioluz[0] }} €/kWh a fecha de: {{ precioluz[1] }}</p>
+            <p><strong>Nubosidad:</strong> {{ predicciones_tiempo[0]['nubosidad'] }}%</p>
+            <p><strong>Radiación Solar:</strong> {{ predicciones_tiempo[0]['radiacion_solar'] }} W/m^2</p>
+        </div>
+        <div class="recommendations">
+            <div class="recommendation-box">
+                <h2>Recomendaciones</h2>
+                <p>Ajusta tus dispositivos para reducir el consumo en horas pico.</p>
+                <p>Utiliza energía solar durante el día para reducir tu factura eléctrica.</p>
+                <p>Aprovecha los días soleados para realizar actividades al aire libre.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
