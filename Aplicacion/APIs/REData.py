@@ -1,12 +1,18 @@
 import requests
-from datetime import datetime, timedelta
+from datetime import datetime,timedelta
+import pytz
 
 def get_real_time_market_prices():
-    # Obtén la fecha actual
-    now = datetime.now()
+    # Obtén la fecha y hora actual en la zona horaria de España (CET)
+    tz = pytz.timezone('Europe/Madrid')
+    now = datetime.now(tz)
+
+    # Redondea la hora actual al intervalo de una hora hacia abajo
+    rounded_hour = now.replace(minute=0, second=0, microsecond=0)
+
     # Formatea la fecha en el formato requerido por la API
-    start_date = now.strftime("%Y-%m-%dT00:00")
-    end_date = now.strftime("%Y-%m-%dT23:59")
+    start_date = rounded_hour.strftime("%Y-%m-%dT%H:%M:%S")
+    end_date = (rounded_hour + timedelta(hours=1)).strftime("%Y-%m-%dT%H:%M:%S")
 
     url = "https://apidatos.ree.es/es/datos/mercados/precios-mercados-tiempo-real"
     params = {
@@ -26,13 +32,11 @@ def get_real_time_market_prices():
             # Convierte la cadena de fecha y hora en un objeto datetime
             datetime_obj = datetime.strptime(datetime_str, "%Y-%m-%dT%H:%M:%S.%f%z")
             # Formatea la fecha y hora en el formato solicitado
-            formatted_datetime = datetime_obj.strftime("%Y-%m-%d a las %H:%M")
+            formatted_datetime = datetime_obj.astimezone(tz).strftime("%Y-%m-%d a las %H:%M %Z")
             price_mwh = price_info["value"]
             # Convierte el precio a €/kWh
             price_kwh = price_mwh / 1000
-            print(f"El precio del kWh en {formatted_datetime} es {price_kwh} €.")
+            return price_kwh, formatted_datetime  # Devuelve el precio del kWh y la hora actual
     else:
         print("Error al obtener los datos.")
-
-# Uso de la función
-get_real_time_market_prices()
+        return None, None  # Devuelve None en caso de error
