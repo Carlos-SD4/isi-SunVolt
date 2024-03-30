@@ -11,59 +11,112 @@
             padding: 0;
             background-color: #f2f2f2; /* Fondo gris claro */
         }
+        .iphone-frame {
+            position: relative;
+            width: 400px; /* Tamaño del marco del iPhone */
+            height: 800px; /* Tamaño del marco del iPhone */
+            margin: 50px auto; /* Centra el marco horizontalmente y añade un margen superior */
+            background-color: #fff; /* Color de fondo del marco del iPhone */
+            border: 2px solid black; /* Borde negro */
+            border-radius: 40px; /* Borde redondeado del marco del iPhone */
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); /* Sombra del marco del iPhone */
+            overflow: hidden; /* Oculta cualquier contenido que se desborde del marco del iPhone */
+        }
+        .iphone-content {
+            padding: 20px; /* Espacio interno dentro del marco */
+            height: calc(100% - 50px); /* Tamaño del contenido - tamaño del footer menu */
+            overflow-y: auto; /* Habilita el desplazamiento vertical si el contenido es demasiado largo */
+        }
         .container {
-            max-width: 800px;
+            max-width: 300px;
             margin: 20px auto;
             padding: 20px;
-            border: 2px solid black; /* Borde general negro */
+            border: 1px solid black; /* Borde general negro */
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         h1 {
             text-align: center;
             margin-bottom: 20px;
+            font-size: 16px; /* Tamaño de letra reducido */
         }
         .device {
-            border: 2px solid black; /* Borde negro alrededor de cada dispositivo */
+            border: 1px solid black; /* Borde negro alrededor de cada dispositivo */
             border-radius: 10px;
             padding: 10px;
             margin-bottom: 20px;
         }
         .device-info h2 {
             margin-bottom: 10px;
+            font-size: 14px; /* Tamaño de letra reducido */
         }
         .device-info h2 .device-name {
             color: black; /* Nombre del dispositivo en negro */
         }
         .device-status {
-            font-size: small;
+            font-size: 12px; /* Tamaño de letra reducido */
             color: green; /* Color del estado de ejecución (en verde) */
         }
         .device-info p {
             margin: 5px 0;
+            font-size: 12px; /* Tamaño de letra reducido */
+        }
+        .footer-menu {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: gray;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+        }
+        .footer-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px; /* Tamaño de letra reducido */
+            margin: 0 10px;
+        }
+        .footer-menu a:hover {
+            color: white;
+            background-color: #555;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Información del Dispositivo</h1>
-        <div class="device">
-            <div class="device-info">
-                <h2><span class="device-name">Batería XYZ</span> <span class="device-status">(En Ejecución)</span></h2>
-                <p><strong>Tipo de Dispositivo:</strong> Batería</p>
-                <p><strong>Estado de Carga:</strong> 80%</p>
-                <p><strong>Energía Cargada Hoy:</strong> 50 kWh</p>
-                <p><strong>Energía Descargada:</strong> 20 kWh</p>
+    <div class="iphone-frame">
+        <div class="iphone-content">
+            <div class="container">
+                <h1>Información del Dispositivo</h1>
+                <div class="device">
+                    <div class="device-info">
+                        <h2><span class="device-name">Batería XYZ</span> <span class="device-status">(En Ejecución)</span></h2>
+                        <p><strong>Tipo de Dispositivo:</strong> Batería</p>
+                        <p><strong>Estado de Carga:</strong> 80%</p>
+                        <p><strong>Energía Cargada Hoy:</strong> 50 kWh</p>
+                        <p><strong>Energía Descargada:</strong> 20 kWh</p>
+                    </div>
+                </div>
+                <div class="device">
+                    <div class="device-info">
+                        <h2><span class="device-name">Sensor de Energía ABC</span> <span class="device-status">(En Ejecución)</span></h2>
+                        <p><strong>Tipo de Dispositivo:</strong> <span style="color: black;">Sensor de Energía</span></p>
+                        <p><strong>Potencia Activa:</strong> 10 kW</p>
+                        <p><strong>Potencia Reactiva:</strong> 5 kVAR</p>
+                        <p><strong>Factor de Potencia:</strong> 0.8</p>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="device">
-            <div class="device-info">
-                <h2><span class="device-name">Sensor de Energía ABC</span> <span class="device-status">(En Ejecución)</span></h2>
-                <p><strong>Tipo de Dispositivo:</strong> <span style="color: black;">Sensor de Energía</span></p>
-                <p><strong>Potencia Activa:</strong> 10 kW</p>
-                <p><strong>Potencia Reactiva:</strong> 5 kVAR</p>
-                <p><strong>Factor de Potencia:</strong> 0.8</p>
-            </div>
+        <div class="footer-menu">
+            <a href="../estadisticas">
+                <i class="fas fa-chart-line"></i> Estadísticas
+            </a>
+            <a href="../Principal?provincia=Madrid">
+                <i class="fas fa-home"></i> Inicio
+            </a>
+            <a href="../mis_dispositivos">
+                <i class="fas fa-mobile-alt"></i> Dispositivos
+            </a>
         </div>
     </div>
 </body>
