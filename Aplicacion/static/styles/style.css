@@ -1,46 +1,55 @@
 /* Estilos generales */
 body {
-    font-family: Arial, sans-serif;
+    font-family: Arial, sans-serif; /* Fuente principal */
     background-color: #f2f2f2; /* Color de fondo */
-    margin: 0;
-    padding: 0;
-}
-
-.iphone-content img {
-    width: 200px; /* Ajusta el tamaño del logo */
-    display: block; /* Convierte la imagen en un elemento de bloque */
-    margin: 0 auto; /* Centra la imagen horizontalmente */
-    margin-bottom: 20px; /* Espacio entre el logo y el título */
+    margin: 0; /* Elimina el margen predeterminado */
+    padding: 0; /* Elimina el relleno predeterminado */
 }
 
 /* Estilos del marco del iPhone */
 .iphone-frame {
-    position: relative;
+    position: relative; /* Posición relativa para que los elementos internos se posicionen en relación con este contenedor */
     width: 400px; /* Tamaño del marco del iPhone */
     height: 800px; /* Tamaño del marco del iPhone */
     margin: 50px auto; /* Centra el marco horizontalmente y añade un margen superior */
-    background-color: #fff; /* Color de fondo del marco del iPhone */
+    background-color: #f0f8ff; /* Azul muy claro como color de fondo */
+    border: 2px solid black; /* Borde negro */
     border-radius: 40px; /* Borde redondeado del marco del iPhone */
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); /* Sombra del marco del iPhone */
     overflow: hidden; /* Oculta cualquier contenido que se desborde del marco del iPhone */
 }
 
+/* Estilos del contenido dentro del marco del iPhone */
 .iphone-content {
-    position: absolute;
-    top: 50%; /* Ajusta la posición vertical del contenido dentro del marco */
-    left: 50%; /* Centra el contenido horizontalmente */
-    transform: translate(-50%, -50%); /* Centra el contenido vertical y horizontalmente */
-    text-align: center;
+
+    position: absolute; /* Posición absoluta para poder centrar el contenido verticalmente */
+    top: 50%; /* Centra verticalmente el contenido */
+    left: 50%; /* Centra horizontalmente el contenido */
+    transform: translate(-50%, -50%); /* Centra el contenido exactamente en el medio */
+    width: 80%; /* Ancho del contenido */
+    text-align: center; /* Alinea el texto al centro */
 }
 
-.iphone-content h1 {
-    font-size: 25px; /* Tamaño del título */
-    margin-bottom: 20px; /* Espacio entre el título y el formulario */
+/* Estilos del contenido dentro del marco del iPhone */
+.iphone-content img#Perfil {
+    width: 100px; /* Ajusta el tamaño del perfil */
+    display: block; /* Convierte la imagen en un elemento de bloque */
+    margin: 0 auto 20px; /* Centra la imagen horizontalmente y agrega un margen inferior */
 }
+
+.iphone-content img#Logo {
+    width: 200px; /* Ajusta el tamaño del logo */
+    display: block; /* Convierte la imagen en un elemento de bloque */
+    margin: 0 auto; /* Centra la imagen horizontalmente */
+    margin-bottom: 20px; /* Espacio entre el logo y el título */
+    margin-top: -150px; /* Mueve la imagen 20px hacia arriba */
+
+}
+
 
 /* Estilos de los campos de entrada */
 .iphone-content input {
-    width: 80%; /* Ajusta el ancho de los campos de entrada */
+    width: 100%; /* Ajusta el ancho de los campos de entrada al 100% del contenedor */
     margin-bottom: 20px; /* Espacio entre los campos de entrada */
     padding: 12px; /* Añade espacio interno a los campos de entrada */
     box-sizing: border-box; /* Incluye el relleno en el tamaño total */
@@ -50,13 +59,13 @@ body {
 
 /* Estilos del botón de inicio de sesión */
 .iphone-content button {
-    width: 80%; /* Ajusta el ancho del botón */
+    width: 100%; /* Ajusta el ancho del botón al 100% del contenedor */
     padding: 12px; /* Tamaño del botón */
     background-color: #007bff; /* Color de fondo del botón */
     color: #fff; /* Color del texto del botón */
     border: none; /* Quita el borde del botón */
     border-radius: 5px; /* Borde redondeado */
-    cursor: pointer;
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
     transition: background-color 0.3s; /* Transición suave del color de fondo */
 }
 
@@ -64,4 +73,19 @@ body {
 .iphone-content button:hover {
     background-color: #0056b3; /* Cambia el color de fondo al pasar el cursor */
 }
+
+/* Estilos del texto y botón de registro */
+.iphone-content p {
+    margin-top: 20px; /* Espacio entre el formulario y el texto de registro */
+}
+
+.iphone-content a {
+    text-decoration: none; /* Quita el subrayado del enlace */
+    color: #007bff; /* Color del enlace */
+}
+
+.iphone-content a:hover {
+    text-decoration: underline; /* Subraya el enlace al pasar el cursor sobre él */
+}
+
 

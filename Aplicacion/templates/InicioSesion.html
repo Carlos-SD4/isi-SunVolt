@@ -10,7 +10,9 @@
     <div class="iphone-frame">
         <div class="iphone-content">
             <!-- Logo -->
-            <img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo">
+            <img id="Logo" src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo">
+            <!-- Imagen del Perfil -->
+            <img id="Perfil" src="{{ url_for('static', filename='images/Perfil.png') }}" alt="Perfil">
             <!-- Título -->
             <h1>Inicio de Sesión</h1>
             <!-- Formulario de inicio de sesión -->
@@ -21,9 +23,14 @@
                 <br>
                 <button type="submit">Iniciar Sesión</button>
             </form>
+            <!-- Texto y botón de registro -->
+            <p>¿No tienes cuenta? <a href="Registro.html">Regístrate</a></p>
+            <!-- Correo de contacto -->
+            <p>Contacto: <a href="mailto:ayudasunvolt@sunvolt.es">ayudasunvolt@sunvolt.es</a></p>
         </div>
     </div>
 </body>
 </html>
+
 
 

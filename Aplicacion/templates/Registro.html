@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+</head>
+<body>
+    <div class="iphone-frame">
+        <div class="iphone-content">
+            <!-- Logo -->
+            <img id="Logo" src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo">
+            <!-- Imagen del Perfil -->
+            <img id="Perfil" src="{{ url_for('static', filename='images/Perfil.png') }}" alt="Perfil">
+            <!-- Título -->
+            <h1>Registro</h1>
+            <!-- Formulario de registro -->
+            <form action="/registro" method="post">
+                <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+                <br>
+                <input type="text" id="apellido" name="apellido" placeholder="Apellido" required>
+                <br>
+                <select id="provincia" name="provincia" required>
+                    <option value="" disabled selected>Selecciona tu provincia</option>
+                    <option value="Álava">Álava</option>
+                    <option value="Albacete">Albacete</option>
+                    <!-- Agrega el resto de provincias aquí -->
+                </select>
+                <br>
+                <input type="email" id="correo" name="correo" placeholder="Correo electrónico" required>
+                <br>
+                <input type="password" id="contraseña" name="contraseña" placeholder="Contraseña" required>
+                <br>
+                <button type="submit">Registrarse</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
