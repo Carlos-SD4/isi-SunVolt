@@ -5,28 +5,139 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Statistics</title>
     <link rel="stylesheet" href="/static/styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-U6pRJgK1gaXieF74K69oZgbZnLEtaHqQ3l3uT8+QlHWDqQu4YvABdoThy/HPTvQ/" crossorigin="anonymous">
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2; /* Color de fondo */
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Estilos del marco del iPhone */
+        .iphone-frame {
+            position: relative;
+            width: 400px; /* Tamaño del marco del iPhone */
+            height: 800px; /* Tamaño del marco del iPhone */
+            margin: 50px auto; /* Centra el marco horizontalmente y añade un margen superior */
+            background-color: #fff; /* Color de fondo del marco del iPhone */
+            border: 2px solid black; /* Borde negro */
+            border-radius: 40px; /* Borde redondeado del marco del iPhone */
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); /* Sombra del marco del iPhone */
+            overflow: hidden; /* Oculta cualquier contenido que se desborde del marco del iPhone */
+        }
+        
+        .iphone-content {
+            padding: 20px; /* Espacio interno dentro del marco */
+            height: calc(100% - 90px); /* Tamaño del contenido - tamaño del footer menu */
+            overflow-y: auto; /* Habilita el desplazamiento vertical si el contenido es demasiado largo */
+        }
+        
+        .iphone-content h1 {
+            font-size: 20px; /* Tamaño del título */
+            margin-bottom: 20px; /* Espacio entre el título y el formulario */
+        }
+        
+        /* Estilos de los campos de entrada */
+        .iphone-content select {
+            width: 100%; /* Ajusta el ancho del combobox */
+            margin-bottom: 7px; /* Espacio entre los campos de entrada */
+            padding: 7px; /* Añade espacio interno al combobox */
+            box-sizing: border-box; /* Incluye el relleno en el tamaño total */
+            border: 1px solid #ccc; /* Borde del combobox */
+            border-radius: 5px; /* Borde redondeado */
+            font-size: 13px; /* Tamaño de la letra */
+        }
+        .prediction {
+            display: none; /* Oculta el contenido de la predicción por defecto */
+            padding: 6px; /* Añade espacio interno al contenido */
+            border: 1px solid #ccc; /* Borde de la predicción */
+            border-radius: 5px; /* Borde redondeado */
+            background-color: #f9f9f9; /* Color de fondo */
+            font-size: 11px; /* Tamaño de la letra */
+            margin-bottom: 8px; /* Espacio entre predicciones */
+        }
+        /* Estilos del footer menu */
+        .footer-menu {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: gray;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .footer-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 0 10px;
+        }
+        
+        .footer-menu a:hover {
+            color: white;
+            background-color: #555;
+        }
+        /* Estilos del botón de recomendaciones */
+        .btn-recommendations {
+            display: block;
+            justify-content: center;
+            background-color: white;
+            color: black;
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 7px 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: -30px; /* Espacio entre el botón y el contenido */
+            margin-left: 125px;
+        }
+        .btn-recommendations:hover {
+            background-color: white;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Estadísticas del Tiempo</h1>
-        <div class="controls">
-            <select id="date-selector">
-                {% for prediccion in predicciones %}
-                <option value="{{ prediccion.fecha.strftime('%Y-%m-%d %H:%M:%S') }}">{{ prediccion.fecha.strftime('%Y-%m-%d %H:%M:%S') }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <div class="stats" id="weather-stats">
-            {% for prediccion in predicciones %}
-            <div class="prediction" id="{{ prediccion.fecha.strftime('%Y-%m-%d %H:%M:%S') }}" style="display: none;">
-                <h2>{{ prediccion.fecha.strftime('%Y-%m-%d %H:%M:%S') }}</h2>
-                <p>Temperatura: {{ prediccion.temperatura }}°C</p>
-                <p>Humedad: {{ prediccion.humedad }}%</p>
-                <p>Nubosidad: {{ prediccion.nubosidad }}%</p>
-                <p>Probabilidad de Lluvia: {{ prediccion.probabilidad_lluvia }}%</p>
-                <p>Radiación Solar Estimada: {{ prediccion.radiacion_solar }} W/m^2</p>
+    <div class="iphone-frame">
+        <div class="iphone-content">
+            <div class="container">
+                <h1>Pagina principal</h1>
+                <div class="controls">
+                    <select id="date-selector">
+                        <option value="" disabled selected>Selecciona una fecha</option>
+                        {% for prediccion in predicciones %}
+                        <option value="{{ prediccion.fecha.strftime('%Y-%m-%d %H:%M:%S') }}">{{ prediccion.fecha.strftime('%Y-%m-%d %H:%M:%S') }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="stats" id="weather-stats">
+                    {% for prediccion in predicciones %}
+                    <div class="prediction" id="{{ prediccion.fecha.strftime('%Y-%m-%d %H:%M:%S') }}" style="display: none;">
+                        <h2>{{ prediccion.fecha.strftime('%Y-%m-%d %H:%M:%S') }}</h2>
+                        <p>Temperatura: {{ prediccion.temperatura }}°C</p>
+                        <p>Humedad: {{ prediccion.humedad }}%</p>
+                        <p>Nubosidad: {{ prediccion.nubosidad }}%</p>
+                        <p>Probabilidad de Lluvia: {{ prediccion.probabilidad_lluvia }}%</p>
+                        <p>Radiación Solar Estimada: {{ prediccion.radiacion_solar }} W/m^2</p>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
-            {% endfor %}
+        </div>
+        <button class="btn-recommendations" onclick="window.location.href='../recomendaciones?provincia=Madrid'">Recomendaciones</button>
+        <div class="footer-menu">
+            <a href="../estadisticas">
+                <i class="fas fa-chart-line"></i> Estadísticas
+            </a>
+            <a href="../principal">
+                <i class="fas fa-home"></i> Inicio
+            </a>
+            <a href="../mis_dispositivos">
+                <i class="fas fa-mobile-alt"></i> Dispositivos
+            </a>
         </div>
     </div>
     <script>
@@ -34,7 +145,7 @@
             var selectedDate = this.value;
             var predictions = document.getElementsByClassName('prediction');
             for (var i = 0; i < predictions.length; i++) {
-                if (predictions[i].id === selectedDate) {
+                if (predictions[i].id === selectedDate || (i === 0 && selectedDate === "")) {
                     predictions[i].style.display = 'block';
                 } else {
                     predictions[i].style.display = 'none';
