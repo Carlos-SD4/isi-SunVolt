@@ -20,6 +20,7 @@ body {
     height: 800px; /* Tamaño del marco del iPhone */
     margin: 50px auto; /* Centra el marco horizontalmente y añade un margen superior */
     background-color: #fff; /* Color de fondo del marco del iPhone */
+    border: 2px solid black; /* Borde negro */
     border-radius: 40px; /* Borde redondeado del marco del iPhone */
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); /* Sombra del marco del iPhone */
     overflow: hidden; /* Oculta cualquier contenido que se desborde del marco del iPhone */
@@ -31,6 +32,15 @@ body {
     left: 50%; /* Centra el contenido horizontalmente */
     transform: translate(-50%, -50%); /* Centra el contenido vertical y horizontalmente */
     text-align: center;
+}
+
+.container {
+    max-width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid black; 
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .iphone-content h1 {
@@ -115,4 +125,24 @@ body {
 
 .perfil-boton:hover {
     background-color: #e9ecef; /* Color de fondo al pasar el cursor */
+}
+
+.footer-menu {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: gray;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+.footer-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px; /* Tamaño de letra reducido */
+    margin: 0 10px;
+}
+.footer-menu a:hover {
+    color: white;
+    background-color: #555;
 }
