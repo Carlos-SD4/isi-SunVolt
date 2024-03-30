@@ -1,0 +1,18 @@
+{
+    "usuarios": [
+        {
+            "nombre": "Javier",
+            "apellido": "Pardo",
+            "provincia": "Gerona",
+            "correo": "prueba@gmail.com",
+            "contrase\u00f1a": "prueba"
+        },
+        {
+            "nombre": "Hola",
+            "apellido": "Hola",
+            "provincia": "Burgos",
+            "correo": "prubea3@gmail.com",
+            "contrase\u00f1a": "jaj"
+        }
+    ]
+}

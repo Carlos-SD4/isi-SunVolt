@@ -5,6 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+    <style>
+        /* Estilos del contenido dentro del marco del iPhone */
+        .iphone-content {
+            position: absolute; /* Posición absoluta para poder centrar el contenido verticalmente */
+            top: 50%; /* Centra verticalmente el contenido */
+            left: 50%; /* Centra horizontalmente el contenido */
+            transform: translate(-50%, -50%); /* Centra el contenido exactamente en el medio */
+            width: 80%; /* Ancho del contenido */
+            text-align: center; /* Alinea el texto al centro */
+        }
+
+        /* Estilos del contenido dentro del marco del iPhone */
+        .iphone-content img#Perfil {
+            width: 100px; /* Ajusta el tamaño del perfil */
+            display: block; /* Convierte la imagen en un elemento de bloque */
+            margin: 0 auto 20px; /* Centra la imagen horizontalmente y agrega un margen inferior */
+        }
+
+        .iphone-content img#Logo {
+            width: 200px; /* Ajusta el tamaño del logo */
+            display: block; /* Convierte la imagen en un elemento de bloque */
+            margin: 0 auto; /* Centra la imagen horizontalmente */
+            margin-bottom: 15px; /* Espacio entre el logo y el título */
+            margin-top: -50px; /* Mueve la imagen 20px hacia arriba */
+        }
+
+        /* Estilos de los campos de entrada */
+        .iphone-content input {
+            width: 100%; /* Ajusta el ancho de los campos de entrada al 100% del contenedor */
+            margin-bottom: 20px; /* Espacio entre los campos de entrada */
+            padding: 12px; /* Añade espacio interno a los campos de entrada */
+            box-sizing: border-box; /* Incluye el relleno en el tamaño total */
+            border: 1px solid #ccc; /* Borde del campo de entrada */
+            border-radius: 5px; /* Borde redondeado */
+        }
+
+        /* Estilos del botón de inicio de sesión */
+        .iphone-content button {
+            width: 100%; /* Ajusta el ancho del botón al 100% del contenedor */
+            padding: 12px; /* Tamaño del botón */
+            background-color: #007bff; /* Color de fondo del botón */
+            color: #fff; /* Color del texto del botón */
+            border: none; /* Quita el borde del botón */
+            border-radius: 5px; /* Borde redondeado */
+            cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+            transition: background-color 0.3s; /* Transición suave del color de fondo */
+        }
+
+        /* Estilos del botón de inicio de sesión al pasar el cursor */
+        .iphone-content button:hover {
+            background-color: #0056b3; /* Cambia el color de fondo al pasar el cursor */
+        }
+
+        /* Establece el mismo ancho para el desplegable de provincia que para los otros campos */
+        #provincia {
+            width: 100%;
+            margin-bottom: 20px; /* Espacio entre los campos de entrada */
+            padding: 12px; /* Añade espacio interno al desplegable */
+            box-sizing: border-box; /* Incluye el relleno en el tamaño total */
+            border: 1px solid #ccc; /* Borde del desplegable */
+            border-radius: 5px; /* Borde redondeado */
+        }
+
+        .error-message {
+            color: red; /* Color rojo para el mensaje de error */
+        }
+
+        input#correo.invalid {
+            border-color: red; /* Borde rojo para el campo de correo */
+        }
+
+    </style>
 </head>
 <body>
     <div class="iphone-frame">
@@ -16,7 +88,7 @@
             <!-- Título -->
             <h1>Registro</h1>
             <!-- Formulario de registro -->
-            <form action="/registro" method="post">
+            <form action="/Registro" method="post">
                 <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
                 <br>
                 <input type="text" id="apellido" name="apellido" placeholder="Apellido" required>
@@ -25,16 +97,70 @@
                     <option value="" disabled selected>Selecciona tu provincia</option>
                     <option value="Álava">Álava</option>
                     <option value="Albacete">Albacete</option>
-                    <!-- Agrega el resto de provincias aquí -->
-                </select>
+                    <option value="Alicante">Alicante</option>
+                    <option value="Almería">Almería</option>
+                    <option value="Asturias">Asturias</option>
+                    <option value="Ávila">Ávila</option>
+                    <option value="Badajoz">Badajoz</option>
+                    <option value="Barcelona">Barcelona</option>
+                    <option value="Burgos">Burgos</option>
+                    <option value="Cáceres">Cáceres</option>
+                    <option value="Cádiz">Cádiz</option>
+                    <option value="Cantabria">Cantabria</option>
+                    <option value="Castellón">Castellón</option>
+                    <option value="Ciudad Real">Ciudad Real</option>
+                    <option value="Córdoba">Córdoba</option>
+                    <option value="Cuenca">Cuenca</option>
+                    <option value="Gerona">Gerona</option>
+                    <option value="Granada">Granada</option>
+                    <option value="Guadalajara">Guadalajara</option>
+                    <option value="Guipúzcoa">Guipúzcoa</option>
+                    <option value="Huelva">Huelva</option>
+                    <option value="Huesca">Huesca</option>
+                    <option value="Islas Baleares">Islas Baleares</option>
+                    <option value="Jaén">Jaén</option>
+                    <option value="La Coruña">La Coruña</option>
+                    <option value="La Rioja">La Rioja</option>
+                    <option value="Las Palmas">Las Palmas</option>
+                    <option value="León">León</option>
+                    <option value="Lérida">Lérida</option>
+                    <option value="Lugo">Lugo</option>
+                    <option value="Madrid">Madrid</option>
+                    <option value="Málaga">Málaga</option>
+                    <option value="Murcia">Murcia</option>
+                    <option value="Navarra">Navarra</option>
+                    <option value="Orense">Orense</option>
+                    <option value="Palencia">Palencia</option>
+                    <option value="Pontevedra">Pontevedra</option>
+                    <option value="Salamanca">Salamanca</option>
+                    <option value="Segovia">Segovia</option>
+                    <option value="Sevilla">Sevilla</option>
+                    <option value="Soria">Soria</option>
+                    <option value="Tarragona">Tarragona</option>
+                    <option value="Santa Cruz de Tenerife">Santa Cruz de Tenerife</option>
+                    <option value="Teruel">Teruel</option>
+                    <option value="Toledo">Toledo</option>
+                    <option value="Valencia">Valencia</option>
+                    <option value="Valladolid">Valladolid</option>
+                    <option value="Vizcaya">Vizcaya</option>
+                    <option value="Zamora">Zamora</option>
+                    <option value="Zaragoza">Zaragoza</option>
+                    <option value="Ceuta">Ceuta</option>
+                    <option value="Melilla">Melilla</option>
+                </select>                
                 <br>
                 <input type="email" id="correo" name="correo" placeholder="Correo electrónico" required>
+                {% if error_message %}
+                <span class="error-message">{{ error_message }}</span> <!-- Mostrar el mensaje de error si existe -->
+                {% endif %}
                 <br>
                 <input type="password" id="contraseña" name="contraseña" placeholder="Contraseña" required>
                 <br>
                 <button type="submit">Registrarse</button>
+
             </form>
         </div>
     </div>
 </body>
 </html>
+
