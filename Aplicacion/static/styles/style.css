@@ -146,3 +146,104 @@ body {
     color: white;
     background-color: #555;
 }
+
+/* Estadísticas */
+/* Estadísticas */
+
+/* Estadísticas */
+
+/* Selector de rango de tiempo */
+/* ... Estilos existentes ... */
+
+/* Estadísticas */
+
+/* Selector de rango de tiempo */
+.time-range-selector {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Espacio entre botones */
+    padding: 10px 0;
+}
+
+.time-range-selector button {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    flex-grow: 1;
+}
+
+.time-range-selector button:not(:last-child) {
+    margin-right: 10px;
+}
+
+.time-range-selector button.active {
+    background-color: #555;
+}
+
+/* Fila de energía con textos y círculos */
+.energy-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.energy-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-basis: 33.33%;
+}
+
+.circle-consumption {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.5em;
+    color: white;
+    margin: 0 10px;
+}
+
+.green { background-color: #4CAF50; }
+.orange { background-color: #FF9800; }
+.orange-light { background-color: #FFA726; }
+
+.energy-label {
+    font-size: 0.8em;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.energy-number {
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.footer-menu {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: gray;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+.footer-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px; /* Tamaño de letra reducido */
+    margin: 0 10px;
+}
+.footer-menu a:hover {
+    color: white;
+    background-color: #555;
+}
