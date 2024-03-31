@@ -1,20 +1,49 @@
-// Este script es un ejemplo, necesitarás ajustarlo según tus necesidades específicas
 document.addEventListener('DOMContentLoaded', function() {
-    // ... tu script existente ...
+    // Actualiza la fecha actual en la página
+    const currentDateSpan = document.getElementById('currentDate');
+    updateCurrentDate();
 
-    // Configura aquí los eventos para los botones y la actualización del gráfico
-    // Ejemplo de cómo podrían cambiar los datos del gráfico
-    const buttons = document.querySelectorAll('.time-range-selector button');
-    buttons.forEach(btn => {
-        btn.addEventListener('click', function() {
-            buttons.forEach(button => button.classList.remove('active'));
+    // Manejador para los botones de selección de rango de tiempo
+    document.querySelectorAll('.time-range-selector button').forEach(button => {
+        button.addEventListener('click', function() {
+            // Remueve la clase 'active' de todos los botones y la asigna al clickeado
+            document.querySelectorAll('.time-range-selector button').forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
-            updateChartData(this.id); // Suponiendo que tienes una función que actualiza los datos
+            
+            // Actualizar el gráfico basado en la selección
+            const selection = this.id;
+            updateChart(selection);
+            
+            // Opcionalmente, actualiza la fecha actual
+            updateCurrentDate(selection);
         });
     });
 
-    function updateChartData(range) {
-        // Actualiza los datos del gráfico en función del rango de tiempo
-        // Esta función dependerá de tu lógica de backend y de cómo recuperas los datos
+    function updateChart(selection) {
+        // Aquí va la lógica para actualizar el gráfico basada en la selección
+        // Puede ser una solicitud AJAX al servidor para obtener nuevos datos y luego actualizar el gráfico
+        console.log("Actualizar gráfico para: ", selection);
+        // Ejemplo: updateChartData(selection); // Función ficticia que deberás implementar
+    }
+
+    function updateCurrentDate(selection = 'total') {
+        const date = new Date();
+        let dateString = '';
+        switch(selection) {
+            case 'daily':
+                dateString = date.toLocaleDateString();
+                break;
+            case 'monthly':
+                dateString = `${date.getMonth() + 1}/${date.getFullYear()}`;
+                break;
+            case 'yearly':
+                dateString = date.getFullYear().toString();
+                break;
+            case 'total':
+            default:
+                dateString = 'Todo el tiempo';
+                break;
+        }
+        currentDateSpan.textContent = dateString;
     }
 });
