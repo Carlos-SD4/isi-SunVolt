@@ -1,11 +1,32 @@
 import json, os
+from OpenWeatherMap import obtener_tiempo  # Importar la función obtener_tiempo
+from REData import get_real_time_market_prices  # Importar la función get_real_time_market_prices
+from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
-@app.route('/InicioSesion')
-def pagina_principal():
-    # Renderiza la plantilla InicioSesion.html
+@app.route('/InicioSesion', methods=['GET', 'POST'])
+def inicio_sesion():
+    if request.method == 'POST':
+        # Obtener los datos del formulario HTML
+        correo = request.form['correo']
+        contraseña = request.form['contrasena']
+
+        # Abrir el archivo JSON y cargar los datos existentes
+        with open('usuarios.json', 'r') as f:
+            data = json.load(f)
+
+            # Verificar si las credenciales son válidas
+            if any(usuario['correo'] == correo and usuario['contrasena'] == contraseña for usuario in data['usuarios']):
+                # Obtener la provincia del usuario autenticado
+                provincia_usuario = next((usuario['provincia'] for usuario in data['usuarios'] if usuario['correo'] == correo), None)
+                # Redirigir a la página principal incluyendo la provincia como argumento en la URL
+                return redirect(url_for('pagina_principal', provincia=provincia_usuario))
+            else:
+                return render_template('InicioSesion.html', error_message="Correo o contraseña incorrectos")
+
+    # Renderizar la plantilla InicioSesion.html
     return render_template('InicioSesion.html')
 
 @app.route('/Registro', methods=['GET', 'POST'])
@@ -17,7 +38,7 @@ def registro():
         apellido = request.form['apellido']
         provincia = request.form['provincia']
         correo = request.form['correo']
-        contraseña = request.form['contraseña']
+        contrasena = request.form['contrasena']
 
         # Abrir el archivo JSON y cargar los datos existentes
         with open('usuarios.json', 'r+') as f:
@@ -36,7 +57,7 @@ def registro():
                     'apellido': apellido,
                     'provincia': provincia,
                     'correo': correo,
-                    'contraseña': contraseña
+                    'contrasena': contrasena
                 }
 
                 # Agregar el nuevo usuario a la lista de usuarios existente
@@ -48,10 +69,29 @@ def registro():
                 f.truncate()
 
                 # Redireccionar a la página de inicio de sesión
-                return redirect(url_for('pagina_principal'))
+                return redirect(url_for('inicio_sesion'))
 
     # Si el método de solicitud es GET o si hay un error, renderizar el formulario de registro con el mensaje de error
     return render_template('Registro.html', error_message=error_message)
+
+
+@app.route('/Principal')
+def pagina_principal():
+    provincia = request.args.get('provincia')  # Obtener la provincia desde la solicitud
+    predicciones = obtener_tiempo(provincia)  # Usar la función obtener_tiempo
+    return render_template('PaginaPrincipal.html', predicciones=predicciones)  # Renderizar Estadisticas.html con los datos de predicciones meteorológicas
+
+@app.route('/mis_dispositivos')
+def mis_dispositivos():
+    return render_template('Dispositivos.html')
+
+@app.route('/recomendaciones')
+def recomendaciones():
+    provincia = request.args.get('provincia')
+    predicciones_tiempo = obtener_tiempo(provincia)
+    precioluz = get_real_time_market_prices()
+    current_hour = datetime.now().hour  # Obtener la hora actual
+    return render_template('Recomendaciones.html', predicciones_tiempo=predicciones_tiempo, precioluz=precioluz, current_hour=current_hour)
 
 
 
