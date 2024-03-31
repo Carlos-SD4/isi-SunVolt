@@ -78,8 +78,10 @@ def registro():
 @app.route('/Principal')
 def pagina_principal():
     provincia = request.args.get('provincia')  # Obtener la provincia desde la solicitud
+    print("Provincia recibida:", provincia)  # Agregamos un print para verificar la provincia recibida
     predicciones = obtener_tiempo(provincia)  # Usar la función obtener_tiempo
-    return render_template('PaginaPrincipal.html', predicciones=predicciones)  # Renderizar Estadisticas.html con los datos de predicciones meteorológicas
+    print("Predicciones obtenidas:", predicciones)  # Agregamos un print para verificar las predicciones obtenidas
+    return render_template('PaginaPrincipal.html', predicciones=predicciones)  # Renderizar PaginaPrincipal.html con los datos de predicciones meteorológicas
 
 @app.route('/mis_dispositivos')
 def mis_dispositivos():

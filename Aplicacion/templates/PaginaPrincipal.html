@@ -113,6 +113,7 @@
                         {% endfor %}
                     </select>
                 </div>
+                <input type="hidden" id="provincia" value="{{ provincia }}"> <!-- Elemento oculto para almacenar la provincia -->
                 <div class="stats" id="weather-stats">
                     {% for prediccion in predicciones %}
                     <div class="prediction" id="{{ prediccion.fecha.strftime('%Y-%m-%d %H:%M:%S') }}" style="display: none;">
