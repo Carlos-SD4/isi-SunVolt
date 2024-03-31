@@ -1,6 +1,8 @@
 import json, os
+import plotly.graph_objs as go
 from OpenWeatherMap import obtener_tiempo  # Importar la función obtener_tiempo
 from REData import get_real_time_market_prices  # Importar la función get_real_time_market_prices
+from NREL import obtener_produccion  # Importar la función mostrar_datos_en_espanol
 from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for
 
@@ -78,10 +80,14 @@ def registro():
 @app.route('/Principal')
 def pagina_principal():
     provincia = request.args.get('provincia')  # Obtener la provincia desde la solicitud
-    print("Provincia recibida:", provincia)  # Agregamos un print para verificar la provincia recibida
     predicciones = obtener_tiempo(provincia)  # Usar la función obtener_tiempo
-    print("Predicciones obtenidas:", predicciones)  # Agregamos un print para verificar las predicciones obtenidas
-    return render_template('PaginaPrincipal.html', predicciones=predicciones)  # Renderizar PaginaPrincipal.html con los datos de predicciones meteorológicas
+
+    produccion_total = obtener_produccion()  # Usar la función mostrar_datos_en_espanol
+    produccion = round((produccion_total/12)/31, 2)
+    consumo_electrico = produccion/2
+
+    return render_template('PaginaPrincipal.html', predicciones=predicciones, produccion=produccion, consumo_electrico=consumo_electrico)
+
 
 @app.route('/mis_dispositivos')
 def mis_dispositivos():

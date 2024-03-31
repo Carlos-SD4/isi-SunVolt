@@ -7,38 +7,42 @@
     <link rel="stylesheet" href="/static/styles/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-U6pRJgK1gaXieF74K69oZgbZnLEtaHqQ3l3uT8+QlHWDqQu4YvABdoThy/HPTvQ/" crossorigin="anonymous">
     <style>
-        /* Estilos generales */
         body {
-            font-family: Arial, sans-serif;
+            font-family: Arial, sans-serif; /* Fuente principal */
             background-color: #f2f2f2; /* Color de fondo */
-            margin: 0;
-            padding: 0;
+            margin: 0; /* Elimina el margen predeterminado */
+            padding: 0; /* Elimina el relleno predeterminado */
         }
-        
+
         /* Estilos del marco del iPhone */
         .iphone-frame {
-            position: relative;
+            position: relative; /* Posición relativa para que los elementos internos se posicionen en relación con este contenedor */
             width: 400px; /* Tamaño del marco del iPhone */
             height: 800px; /* Tamaño del marco del iPhone */
             margin: 50px auto; /* Centra el marco horizontalmente y añade un margen superior */
-            background-color: #fff; /* Color de fondo del marco del iPhone */
+            background-color: #f0f8ff; /* Azul muy claro como color de fondo */
             border: 2px solid black; /* Borde negro */
             border-radius: 40px; /* Borde redondeado del marco del iPhone */
             box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); /* Sombra del marco del iPhone */
             overflow: hidden; /* Oculta cualquier contenido que se desborde del marco del iPhone */
         }
-        
+
+        /* Estilos del marco del iPhone */        
         .iphone-content {
             padding: 20px; /* Espacio interno dentro del marco */
             height: calc(100% - 90px); /* Tamaño del contenido - tamaño del footer menu */
             overflow-y: auto; /* Habilita el desplazamiento vertical si el contenido es demasiado largo */
         }
-        
+
         .iphone-content h1 {
             font-size: 20px; /* Tamaño del título */
             margin-bottom: 20px; /* Espacio entre el título y el formulario */
+            text-align: center; /* Centra el título */
+            padding: 10px; /* Añade relleno alrededor del título */
+            border: 1px solid black; /* Borde alrededor del título */
+            border-radius: 5px; /* Borde redondeado del título */
         }
-        
+
         /* Estilos de los campos de entrada */
         .iphone-content select {
             width: 100%; /* Ajusta el ancho del combobox */
@@ -67,19 +71,24 @@
             padding: 10px 0;
             display: flex;
             justify-content: center;
+            border-top: 2px solid black; /* Borde superior del footer */
         }
-        
+
         .footer-menu a {
             color: white;
             text-decoration: none;
             font-size: 16px;
-            margin: 0 10px;
+            margin: 0 20px; /* Aumenta el margen horizontal */
+            padding: 5px 10px; /* Añade relleno alrededor del botón */
+            border: 1px solid white; /* Borde del botón */
+            border-radius: 5px; /* Borde redondeado */
         }
-        
+
         .footer-menu a:hover {
-            color: white;
-            background-color: #555;
+            background-color: #555; /* Color de fondo al pasar el ratón */
+            border-color: #555; /* Cambia el color del borde al pasar el ratón */
         }
+
         /* Estilos del botón de recomendaciones */
         .btn-recommendations {
             display: block;
@@ -92,12 +101,187 @@
             font-size: 16px;
             cursor: pointer;
             transition: background-color 0.3s;
-            margin-top: -30px; /* Espacio entre el botón y el contenido */
-            margin-left: 125px;
+            margin-top: -50px; /* Espacio entre el botón y el contenido */
+            margin-left: auto; /* Centra horizontalmente */
+            margin-right: auto; /* Centra horizontalmente */
+            display: block; /* Hace que el botón ocupe todo el ancho disponible */
+            width: fit-content; /* Establece el ancho del botón basado en su contenido */
         }
+
         .btn-recommendations:hover {
             background-color: white;
         }
+
+        /* Estilos de los círculos */
+        .circles-container {
+            position: absolute;
+            top: 60%; /* Ajusta esto para cambiar la posición vertical del contenedor */
+            left: 50%; /* Ajusta esto para cambiar la posición horizontal del contenedor */
+            transform: translate(-50%, -50%); /* Centra el contenedor */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .circle-row {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0; /* Ajusta esto para cambiar el espacio entre las filas */
+        }
+
+        .circle {
+            width: 78px; /* Ajusta esto para cambiar el tamaño de los círculos */
+            height: 78px; /* Ajusta esto para cambiar el tamaño de los círculos */
+            border-radius: 50%;
+            background-color: transparent;
+            border: 4px solid;
+            margin: 0 70px; /* Añade espacio a los lados de los círculos */
+        }
+
+        .circle-solar {
+            background-color: transparent;
+            color: yellow;
+            border-color: yellow; /* Borde amarillo */
+        }
+
+        .circle-grid {
+            background-color: transparent;
+            color: blue;
+            border-color: blue; /* Borde azul */
+        }
+
+        .circle-total {
+            background-color: transparent;
+            color: green;
+            border-color: green; /* Borde verde */
+        }
+
+        .circle-battery {
+            border-color: #4caf50; /* Verde para representar la batería */
+        }
+
+        .circle-price {
+            border-color: #fbc02d; /* Amarillo dorado para representar el dinero */
+        }
+
+        /* Estilos de la flecha solar */
+        .arrow-solar-total {
+            position: absolute;
+            top: 33%; /* Ajusta esto para cambiar la posición vertical de la flecha */
+            left: 28%; /* Ajusta esto para cambiar la posición horizontal de la flecha */
+            width: 75px; /* Ajusta esto para cambiar el tamaño de la flecha */
+            height: 2px; /* Ajusta esto para cambiar el grosor de la flecha */
+            background-color: green; /* Color de la flecha */
+            transform: rotate(50deg); /* Centra la flecha */
+            animation: electric-green 2s infinite alternate; /* Agrega animación de corriente */
+        }
+
+        /* Estilos de la cabeza de la flecha solar */
+        .arrow-solar-total::before {
+            content: '';
+            position: absolute;
+            top: -4px; /* Ajusta posición vertical de la cabeza de la flecha */
+            left: 64px; /* Ajusta posición horizontal de la cabeza de la flecha */
+            width: 10px; /* Tamaño de la cabeza de la flecha */
+            height: 10px; /* Tamaño de la cabeza de la flecha */
+            background-color: green; /* Color de la cabeza de la flecha */
+            transform: rotate(45deg); /* Girar para formar la cabeza de la flecha */
+            animation: electric-green 2s infinite alternate; /* Agrega animación de corriente */
+        }
+
+        /* Estilos de la flecha grid */
+        .arrow-grid-total {
+            position: absolute;
+            top: 32%; /* Ajusta esto para cambiar la posición vertical de la flecha */
+            right: 29%; /* Ajusta esto para cambiar la posición horizontal de la flecha */
+            width: 75px; /* Ajusta esto para cambiar el tamaño de la flecha */
+            height: 2px; /* Ajusta esto para cambiar el grosor de la flecha */
+            background-color: yellow; /* Color de la flecha */
+            transform: rotate(-50deg); /* Centra la flecha */
+            animation: electric-yellow 2s infinite alternate; /* Agrega animación de corriente */
+        }
+
+        /* Estilos de la cabeza de la flecha grid */
+        .arrow-grid-total::before {
+            content: '';
+            position: absolute;
+            top: -4px; /* Ajusta posición vertical de la cabeza de la flecha */
+            left: -1px; /* Ajusta posición horizontal de la cabeza de la flecha */
+            width: 10px; /* Tamaño de la cabeza de la flecha */
+            height: 10px; /* Tamaño de la cabeza de la flecha */
+            background-color: yellow; /* Color de la cabeza de la flecha */
+            transform: rotate(-45deg); /* Girar para formar la cabeza de la flecha */
+            animation: electric-yellow 2s infinite alternate; /* Agrega animación de corriente */
+        }
+
+
+        /* Animación de la corriente */
+        @keyframes electric-green {
+            from {
+                background-color: green; /* Color inicial de la corriente */
+            }
+            to {
+                background-color: transparent; /* Color final de la corriente */
+            }
+        }
+
+        @keyframes electric-yellow {
+            from {
+                background-color: yellow; /* Color inicial de la corriente */
+            }
+            to {
+                background-color: transparent; /* Color final de la corriente */
+            }
+        }
+
+        /* Estilos del cuadro de información */
+        .circle-tooltip {
+            display: none;
+            position: absolute;
+            background-color: #ddd; /* Fondo gris claro */
+            color: #000; /* Letras negras */
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 1; /* Asegura que el tooltip esté por encima de los otros elementos */
+            text-align: center; /* Centra el texto */
+        }
+
+        .circle:hover .circle-tooltip {
+            display: block; /* Muestra el tooltip cuando se pasa el mouse sobre el círculo */
+        }
+
+
+        /* Estilos para el valor dentro del círculo */
+        .circle-value-solar {
+            position: absolute;
+            top: 16%; /* Coloca el valor en la mitad vertical del círculo */
+            left: 25%; /* Coloca el valor en la mitad horizontal del círculo */
+            transform: translate(-50%, -50%); /* Centra el valor en relación con el círculo */
+            font-size: 18px; /* Tamaño de la fuente del valor */
+            color: #000; /* Color del valor */
+        }
+
+        /* Estilos para el valor dentro del círculo */
+        .circle-value-grid {
+            position: absolute;
+            top: 50%; /* Coloca el valor en la mitad vertical del círculo */
+            left: 50%; /* Coloca el valor en la mitad horizontal del círculo */
+            transform: translate(-50%, -50%); /* Centra el valor en relación con el círculo */
+            font-size: 18px; /* Tamaño de la fuente del valor */
+            color: #000; /* Color del valor */
+        }
+
+        /* Estilos para el valor dentro del círculo */
+        .circle-value-total {
+            position: absolute;
+            top: 50%; /* Coloca el valor en la mitad vertical del círculo */
+            left: 50%; /* Coloca el valor en la mitad horizontal del círculo */
+            transform: translate(-50%, -50%); /* Centra el valor en relación con el círculo */
+            font-size: 18px; /* Tamaño de la fuente del valor */
+            color: #000; /* Color del valor */
+        }
+
     </style>
 </head>
 <body>
@@ -113,7 +297,6 @@
                         {% endfor %}
                     </select>
                 </div>
-                <input type="hidden" id="provincia" value="{{ provincia }}"> <!-- Elemento oculto para almacenar la provincia -->
                 <div class="stats" id="weather-stats">
                     {% for prediccion in predicciones %}
                     <div class="prediction" id="{{ prediccion.fecha.strftime('%Y-%m-%d %H:%M:%S') }}" style="display: none;">
@@ -126,6 +309,38 @@
                     </div>
                     {% endfor %}
                 </div>
+                <!-- Círculos de consumo -->
+                <div class="circles-container">
+                    <div class="circle-row">
+                        <div class="circle circle-solar" data-tooltip="Este círculo representa la energía solar">
+                            <div class="circle-tooltip">Consumo actual de la plantación solar</div>
+                            <span class="circle-value-solar">{{ produccion }} kWh</span>
+                        </div>
+                        <div class="arrow-solar-total"></div>
+                        <div class="arrow-grid-total"></div>
+                        <div class="circle circle-grid" data-tooltip="Este círculo representa la energía de la red eléctrica">
+                            <div class="circle-tooltip">Consumo de energía de la red eléctrica</div>
+                            <span class="circle-value-grid">{{ consumo_electrico }} kWh</span>
+                        </div>
+                    </div>
+                    <div class="circle-row">
+                        <div class="circle circle-total" data-tooltip="Este círculo representa el consumo total de energía">
+                            <div class="circle-tooltip">Consumo total de energía</div>
+                            <span class="circle-value-total">{{ produccion }} kWh</span>
+                        </div>
+                    </div>
+                    <div class="circle-row">
+                        <div class="circle circle-battery" data-tooltip="Este círculo representa el estado de la batería">
+                            <div class="circle-tooltip">Estado de la batería</div>
+                        </div>
+                        <div class="arrow"></div>
+                        <div class="circle circle-price" data-tooltip="Este círculo representa el costo de la energía">
+                            <div class="circle-tooltip">Costo de la energía</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fin de círculos -->
+
             </div>
         </div>
         <button class="btn-recommendations" onclick="window.location.href='../recomendaciones?provincia=Madrid'">Recomendaciones</button>
@@ -156,3 +371,8 @@
     </script>
 </body>
 </html>
+
+
+
+
+

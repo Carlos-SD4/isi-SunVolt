@@ -1,25 +1,18 @@
 {
     "usuarios": [
         {
-            "nombre": "Javier",
-            "apellido": "Pardo",
-            "provincia": "Gerona",
-            "correo": "prueba@gmail.com",
-            "contrasena": "prueba"
-        },
-        {
-            "nombre": "Hola",
-            "apellido": "Hola",
-            "provincia": "Burgos",
-            "correo": "prubea3@gmail.com",
-            "contrasena": "jaj"
-        },
-        {
             "nombre": "Provincia",
             "apellido": "prueba",
             "provincia": "Madrid",
             "correo": "provincia@gmail.com",
             "contrasena": "provincia"
+        },
+        {
+            "nombre": "Javier",
+            "apellido": "Pardo",
+            "provincia": "Albacete",
+            "correo": "hola@gmail.com",
+            "contrasena": "hola"
         }
     ]
 }
