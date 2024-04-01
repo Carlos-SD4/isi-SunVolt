@@ -73,6 +73,10 @@ def registro():
     # Si el método de solicitud es GET o si hay un error, renderizar el formulario de registro con el mensaje de error
     return render_template('Registro.html', error_message=error_message)
 
+@app.route('/')
+def redirigir_a_inicio_sesion():
+    return redirect(url_for('pagina_principal'))
+
 
 if __name__ == '__main__':
     app.run(debug=True)
