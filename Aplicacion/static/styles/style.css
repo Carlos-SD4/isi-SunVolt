@@ -1,25 +1,18 @@
 /* Estilos generales */
 body {
-    font-family: Arial, sans-serif;
+    font-family: Arial, sans-serif; /* Fuente principal */
     background-color: #f2f2f2; /* Color de fondo */
-    margin: 0;
-    padding: 0;
-}
-
-.iphone-content img {
-    width: 200px; /* Ajusta el tamaño del logo */
-    display: block; /* Convierte la imagen en un elemento de bloque */
-    margin: 0 auto; /* Centra la imagen horizontalmente */
-    margin-bottom: 20px; /* Espacio entre el logo y el título */
+    margin: 0; /* Elimina el margen predeterminado */
+    padding: 0; /* Elimina el relleno predeterminado */
 }
 
 /* Estilos del marco del iPhone */
 .iphone-frame {
-    position: relative;
+    position: relative; /* Posición relativa para que los elementos internos se posicionen en relación con este contenedor */
     width: 400px; /* Tamaño del marco del iPhone */
     height: 800px; /* Tamaño del marco del iPhone */
     margin: 50px auto; /* Centra el marco horizontalmente y añade un margen superior */
-    background-color: #fff; /* Color de fondo del marco del iPhone */
+    background-color: #f0f8ff; /* Azul muy claro como color de fondo */
     border: 2px solid black; /* Borde negro */
     border-radius: 40px; /* Borde redondeado del marco del iPhone */
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); /* Sombra del marco del iPhone */
@@ -264,3 +257,4 @@ body {
     color: white;
     background-color: #555;
 }
+
