@@ -132,7 +132,7 @@
             <a href="../estadisticas">
                 <i class="fas fa-chart-line"></i> Estadísticas
             </a>
-            <a href="../principal">
+            <a href="../Principal?provincia=Madrid">
                 <i class="fas fa-home"></i> Inicio
             </a>
             <a href="../mis_dispositivos">
@@ -141,17 +141,29 @@
         </div>
     </div>
     <script>
-        document.getElementById('date-selector').addEventListener('change', function() {
-            var selectedDate = this.value;
+        document.addEventListener("DOMContentLoaded", function() {
+            var selector = document.getElementById('date-selector');
             var predictions = document.getElementsByClassName('prediction');
-            for (var i = 0; i < predictions.length; i++) {
-                if (predictions[i].id === selectedDate || (i === 0 && selectedDate === "")) {
-                    predictions[i].style.display = 'block';
-                } else {
-                    predictions[i].style.display = 'none';
+    
+            // Seleccionar la primera opción por defecto
+            selector.selectedIndex = 1; // Cambiar a 1 si la opción "Selecciona una fecha" es la primera opción
+    
+            // Mostrar la primera predicción correspondiente
+            predictions[0].style.display = 'block';
+    
+            selector.addEventListener('change', function() {
+                var selectedDate = this.value;
+                for (var i = 0; i < predictions.length; i++) {
+                    if (predictions[i].id === selectedDate || (i === 0 && selectedDate === "")) {
+                        predictions[i].style.display = 'block';
+                    } else {
+                        predictions[i].style.display = 'none';
+                    }
                 }
-            }
+            });
         });
     </script>
+    
 </body>
 </html>
+
