@@ -61,10 +61,13 @@
         }
 
         .recommendation-box {
+            width: 317px; /* Tamaño fijo deseado */
+            height: 200px; /* Tamaño fijo deseado */
             border: 1px solid #ccc;
             border-radius: 5px;
             padding: 20px;
             background-color: #f9f9f9;
+            overflow-y: auto; /* Habilitar el desplazamiento vertical */
             font-size: 16px;
         }
 
@@ -90,14 +93,20 @@
             align-items: center;
             border: 4px solid;
             background-color: rgba(0, 0, 0, 0.1);
+            bottom: 20px;
         }
 
         .circle-name {
             font-size: 14px;
-            margin-top: 120px;
+            margin-top: 40px;
             font-weight: bold;
         }
 
+        .circle-value {
+            font-size: 18px;
+            margin-top: 57px;
+            font-weight: bold;
+        }
 
         .circle.green {
             border-color: #28a745;
@@ -116,6 +125,7 @@
 
         /* Estilos del footer menu */
         .footer-menu {
+            position: absolute;
             width: 100%;
             background-color: gray;
             padding: 5px 0;
@@ -124,6 +134,7 @@
             border-top: 2px solid black; /* Borde superior del footer */
             border-bottom-left-radius: 20px;
             border-bottom-right-radius: 20px;
+            bottom: 0px;
         }
 
         .footer-menu a {
@@ -160,10 +171,10 @@
             <h1>Recomendaciones</h1>
             <div class="summary">
                 <h2>Resumen de Estadísticas</h2>
-                <p><strong>Consumo de Energía:</strong> {{ predicciones_tiempo[0]['consumo_energia'] }} kWh</p>
-                <p><strong>Precio de la Luz:</strong> {{ precioluz }} €/kWh a fecha de: {{ precioluz }}</p>
+                <p><strong>Consumo de Energía:</strong> {{ consumo_total }} kWh</p>
+                <p><strong>Precio de la Luz:</strong> {{ precioluz }} €/kWh a fecha de: {{ fecha_actual }}</p>
                 {% if predicciones_tiempo %}
-                    {% set hour = current_hour %}
+                    {% set hour = hora_actual %}
                     {% set franja_horaria = "00:00 - 03:00" if 0 <= hour < 3 else "03:00 - 06:00" if 3 <= hour < 6 else "06:00 - 09:00" if 6 <= hour < 9 else "09:00 - 12:00" if 9 <= hour < 12 else "12:00 - 15:00" if 12 <= hour < 15 else "15:00 - 18:00" if 15 <= hour < 18 else "18:00 - 21:00" if 18 <= hour < 21 else "21:00 - 00:00" %}
                     <p><strong>Nubosidad ({{ franja_horaria }}):</strong> {{ predicciones_tiempo[0]['nubosidad'] }}%</p>
                     <p><strong>Radiación Solar ({{ franja_horaria }}):</strong> {{ predicciones_tiempo[0]['radiacion_solar'] }} W/m^2</p>
@@ -172,19 +183,20 @@
             <div class="recommendations">
                 <div class="recommendation-box">
                     <h2>Recomendaciones</h2>
-                    <p>Ajusta tus dispositivos para reducir el consumo en horas pico.</p>
-                    <p>Utiliza energía solar durante el día para reducir tu factura eléctrica.</p>
-                    <p>Aprovecha los días soleados para realizar actividades al aire libre.</p>
+                    <p>{{ recomendacion }}</p>
                 </div>
-            </div>
+            </div>            
             <div class="circles">
                 <div class="circle green">
+                    <div class="circle-value">{{ placa_solar }} kWh</div>
                     <div class="circle-name">E. Placa</div>
                 </div>
                 <div class="circle blue">
+                    <div class="circle-value">{{ bateria }} %</div>
                     <div class="circle-name">Batería</div>
                 </div>
                 <div class="circle yellow">
+                    <div class="circle-value">{{ precioluz }} €</div>
                     <div class="circle-name">Precio kWh</div>
                 </div>
             </div>
@@ -195,7 +207,7 @@
             <span><i class="fas fa-chart-line"></i></span>
             <span>Estadísticas</span>
         </a>
-        <a href="../principal">
+        <a href="../Principal?provincia={{ provincia }}">
             <span><i class="fas fa-home"></i></span>
             <span>Inicio</span>
         </a>
