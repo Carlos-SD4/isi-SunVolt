@@ -128,7 +128,7 @@
         /* Estilos de los círculos */
         .circles-container {
             position: absolute;
-            top: 63%; /* Ajusta esto para cambiar la posición vertical del contenedor */
+            top: 65%; /* Ajusta esto para cambiar la posición vertical del contenedor */
             left: 50%; /* Ajusta esto para cambiar la posición horizontal del contenedor */
             transform: translate(-50%, -50%); /* Centra el contenedor */
             display: flex;
@@ -139,7 +139,7 @@
         .circle-row {
             display: flex;
             justify-content: space-around;
-            margin: 20px 0; /* Ajusta esto para cambiar el espacio entre las filas */
+            margin: 10px 0; /* Ajusta esto para cambiar el espacio entre las filas */
         }
 
         .circle {
@@ -180,9 +180,9 @@
         /* Estilos de la flecha solar */
         .arrow-solar-total {
             position: absolute;
-            top: 33%; /* Ajusta esto para cambiar la posición vertical de la flecha */
-            left: 28%; /* Ajusta esto para cambiar la posición horizontal de la flecha */
-            width: 75px; /* Ajusta esto para cambiar el tamaño de la flecha */
+            top: 32%; /* Ajusta esto para cambiar la posición vertical de la flecha */
+            left: 29%; /* Ajusta esto para cambiar la posición horizontal de la flecha */
+            width: 72px; /* Ajusta esto para cambiar el tamaño de la flecha */
             height: 2px; /* Ajusta esto para cambiar el grosor de la flecha */
             background-color: green; /* Color de la flecha */
             transform: rotate(50deg); /* Centra la flecha */
@@ -207,7 +207,7 @@
             position: absolute;
             top: 32%; /* Ajusta esto para cambiar la posición vertical de la flecha */
             right: 29%; /* Ajusta esto para cambiar la posición horizontal de la flecha */
-            width: 75px; /* Ajusta esto para cambiar el tamaño de la flecha */
+            width: 72px; /* Ajusta esto para cambiar el tamaño de la flecha */
             height: 2px; /* Ajusta esto para cambiar el grosor de la flecha */
             background-color: yellow; /* Color de la flecha */
             transform: rotate(-50deg); /* Centra la flecha */
@@ -273,6 +273,7 @@
             transform: translate(-50%, -50%); /* Centra el valor en relación con el círculo */
             font-size: 18px; /* Tamaño de la fuente del valor */
             color: #000; /* Color del valor */
+            font-weight: bold; /* Aplica negrita al texto */
         }
 
         /* Estilos para el valor dentro del círculo */
@@ -283,6 +284,7 @@
             transform: translate(-50%, -50%); /* Centra el valor en relación con el círculo */
             font-size: 18px; /* Tamaño de la fuente del valor */
             color: #000; /* Color del valor */
+            font-weight: bold; /* Aplica negrita al texto */
         }
 
         /* Estilos para el valor dentro del círculo */
@@ -293,6 +295,7 @@
             transform: translate(-50%, -50%); /* Centra el valor en relación con el círculo */
             font-size: 18px; /* Tamaño de la fuente del valor */
             color: #000; /* Color del valor */
+            font-weight: bold; /* Aplica negrita al texto */
         }
 
         .circle-value-bateria {
@@ -302,6 +305,7 @@
             transform: translate(-50%, -50%); /* Centra el valor en relación con el círculo */
             font-size: 18px; /* Tamaño de la fuente del valor */
             color: #000; /* Color del valor */
+            font-weight: bold; /* Aplica negrita al texto */
         }
 
         .circle-value-energia {
@@ -311,6 +315,7 @@
             transform: translate(-50%, -50%); /* Centra el valor en relación con el círculo */
             font-size: 18px; /* Tamaño de la fuente del valor */
             color: #000; /* Color del valor */
+            font-weight: bold; /* Aplica negrita al texto */
         }
 
             /* Estilo para el botón de la página actual */
@@ -320,6 +325,67 @@
             color: white !important; /* Cambia el color del texto */
             border-color: gray !important; /* Cambia el color del borde */
         }
+
+        /* Estilos para el círculo de energía solar */
+        .circle-solar::after {
+            content: "C. Placa"; /* Nombre del círculo */
+            position: absolute;
+            bottom: 210px; /* Ajusta la posición vertical del nombre */
+            left: 25%; /* Centra horizontalmente */
+            transform: translateX(-50%); /* Centra horizontalmente */
+            color: black; /* Color del texto */
+            font-size: 14px; /* Tamaño del texto */
+            font-weight: bold; /* Aplica negrita al texto */
+        }
+
+        /* Estilos para el círculo de energía de la red eléctrica */
+        .circle-grid::after {
+            content: "C. Red Eléctrica"; /* Nombre del círculo */
+            position: absolute;
+            bottom: 210px; /* Ajusta la posición vertical del nombre */
+            left: 74%; /* Centra horizontalmente */
+            transform: translateX(-50%); /* Centra horizontalmente */
+            font-size: 14px; /* Tamaño del texto */
+            color: black; /* Color del texto */
+            font-weight: bold; /* Aplica negrita al texto */
+        }
+
+        /* Estilos para el círculo de consumo total de energía */
+        .circle-total::after {
+            content: "C. Total Energía"; /* Nombre del círculo */
+            position: absolute;
+            bottom: 100px; /* Ajusta la posición vertical del nombre */
+            left: 50%; /* Centra horizontalmente */
+            transform: translateX(-50%); /* Centra horizontalmente */
+            color: black; /* Color del texto */
+            font-size: 14px; /* Tamaño del texto */
+            font-weight: bold; /* Aplica negrita al texto */
+        }
+
+        /* Estilos para el círculo del estado de la batería */
+        .circle-battery::after {
+            content: "Batería"; /* Nombre del círculo */
+            position: absolute;
+            bottom: -10px; /* Ajusta la posición vertical del nombre */
+            left: 25%; /* Centra horizontalmente */
+            transform: translateX(-50%); /* Centra horizontalmente */
+            color: black; /* Color del texto */
+            font-size: 14px; /* Tamaño del texto */
+            font-weight: bold; /* Aplica negrita al texto */
+        }
+
+        /* Estilos para el círculo del costo de la energía */
+        .circle-price::after {
+            content: "Precio Luz"; /* Nombre del círculo */
+            position: absolute;
+            bottom: -10px; /* Ajusta la posición vertical del nombre */
+            left: 75%; /* Centra horizontalmente */
+            transform: translateX(-50%); /* Centra horizontalmente */
+            color: black; /* Color del texto */
+            font-size: 14px; /* Tamaño del texto */
+            font-weight: bold; /* Aplica negrita al texto */
+        }
+
 
     </style>
 </head>
