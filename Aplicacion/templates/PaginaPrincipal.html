@@ -313,6 +313,14 @@
             color: #000; /* Color del valor */
         }
 
+            /* Estilo para el botón de la página actual */
+        .current-page {
+            pointer-events: none; /* Deshabilita los eventos de puntero */
+            background-color: gray !important; /* Cambia el color de fondo */
+            color: white !important; /* Cambia el color del texto */
+            border-color: gray !important; /* Cambia el color del borde */
+        }
+
     </style>
 </head>
 <body>
@@ -382,7 +390,7 @@
                 <span><i class="fas fa-chart-line"></i></span>
                 <span>Estadísticas</span>
             </a>
-            <a href="../principal">
+            <a href="../Principal?provincia={{provincia}}" class="current-page">
                 <span><i class="fas fa-home"></i></span>
                 <span>Inicio</span>
             </a>
