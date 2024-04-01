@@ -127,7 +127,6 @@ def info_usuario():
         usuario = next((u for u in usuarios if u['correo'] == correo_usuario), None)
     
     if usuario:
-        # No incluyas la contraseña en la información que envías a la plantilla
         info = {
             'nombre': usuario['nombre'],
             'apellido': usuario['apellido'],
