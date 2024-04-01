@@ -13,6 +13,13 @@
             "provincia": "Albacete",
             "correo": "hola@gmail.com",
             "contrasena": "hola"
+        },
+        {
+            "nombre": "Pablo",
+            "apellido": "Diaz",
+            "provincia": "Cuenca",
+            "correo": "pablo@gmail.com",
+            "contrasena": "1234"
         }
     ]
 }
