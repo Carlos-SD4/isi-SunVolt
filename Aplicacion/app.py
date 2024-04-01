@@ -1,4 +1,4 @@
-import json, os
+import json, os, random
 import plotly.graph_objs as go
 from OpenWeatherMap import obtener_tiempo  # Importar la función obtener_tiempo
 from REData import get_real_time_market_prices  # Importar la función get_real_time_market_prices
@@ -82,22 +82,28 @@ def pagina_principal():
     provincia = request.args.get('provincia')  # Obtener la provincia desde la solicitud
     predicciones = obtener_tiempo(provincia)  # Usar la función obtener_tiempo
 
-    produccion_total = obtener_produccion()  # Usar la función mostrar_datos_en_espanol
-    produccion = round((produccion_total/12)/31, 2)
-    consumo_electrico = produccion/2
+    #produccion_total = obtener_produccion()  # Usar la función mostrar_datos_en_espanol
+    #produccion = round((produccion_total/12)/31, 2)
+    #consumo_electrico = produccion/2
 
-    return render_template('PaginaPrincipal.html', predicciones=predicciones, produccion=produccion, consumo_electrico=consumo_electrico)
+    produccion = 1
+    consumo_electrico = 0.5
+    bateria = random.randint(0, 50)
+    precio = round(get_real_time_market_prices(provincia), 2)
+
+    return render_template('PaginaPrincipal.html', predicciones=predicciones, produccion=produccion, consumo_electrico=consumo_electrico, bateria=bateria, precio=precio)
 
 
 @app.route('/mis_dispositivos')
 def mis_dispositivos():
     return render_template('Dispositivos.html')
 
+
 @app.route('/recomendaciones')
 def recomendaciones():
     provincia = request.args.get('provincia')
     predicciones_tiempo = obtener_tiempo(provincia)
-    precioluz = get_real_time_market_prices()
+    precioluz = get_real_time_market_prices(provincia)
     current_hour = datetime.now().hour  # Obtener la hora actual
     return render_template('Recomendaciones.html', predicciones_tiempo=predicciones_tiempo, precioluz=precioluz, current_hour=current_hour)
 
