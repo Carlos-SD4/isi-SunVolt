@@ -3,41 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil de Usuario</title>
+    <title>Información del Usuario</title>
     <link rel="stylesheet" href="../static/styles/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-
 </head>
+
 <body>
 
-<div class="iphone-frame">
-    <div class="iphone-content">
-       <!-- <div class="container">    -->
-        <!-- Aquí comienza la estructura del perfil -->
-            <div class="perfil-header">
-                <img src="../static/images/imagen-perfil.jpg" alt="Imagen de perfil" class="perfil-imagen">
-                <h1 class="perfil-nombre">[Nombre]</h1>
+    <div class="iphone-frame">
+        <div class="iphone-content">
+           <!-- <div class="container">    -->
+            <div id="infoUsuario">
+                <!-- La información del usuario se llenará aquí -->
             </div>
-            <div class="perfil-opciones">
-                <button class="perfil-boton"><i class="fa fa-user" aria-hidden="true"></i> Información Personal</button>
-                <button class="perfil-boton"><i class="fa fa-bell" aria-hidden="true"></i> Notificaciones</button>
-                <button class="perfil-boton"><i class="fa fa-cog" aria-hidden="true"></i> Configuración</button>
-            </div>
-        <!-- </div>     -->
-        <!-- Aquí termina la estructura del perfil -->
+        
+            <script src="infoUsuario.js"></script>
+            <!-- </div>     -->
+        </div>
+        <div class="footer-menu">
+            <a href="../estadisticas">
+                <i class="fas fa-chart-line"></i> Estadísticas
+            </a>
+            <a href="../Principal?provincia=Madrid">
+                <i class="fas fa-home"></i> Inicio
+            </a>
+            <a href="../mis_dispositivos">
+                <i class="fas fa-mobile-alt"></i> Dispositivos
+            </a>
+        </div>
     </div>
-    <div class="footer-menu">
-        <a href="../estadisticas">
-            <i class="fas fa-chart-line"></i> Estadísticas
-        </a>
-        <a href="../Principal?provincia=Madrid">
-            <i class="fas fa-home"></i> Inicio
-        </a>
-        <a href="../mis_dispositivos">
-            <i class="fas fa-mobile-alt"></i> Dispositivos
-        </a>
-    </div>
-</div>
-
-</body>
+    
+    </body>
 </html>

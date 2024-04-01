@@ -1,0 +1,18 @@
+{
+    "usuarios": [
+        {
+            "nombre": "Provincia",
+            "apellido": "prueba",
+            "provincia": "Madrid",
+            "correo": "provincia@gmail.com",
+            "contrasena": "provincia"
+        },
+        {
+            "nombre": "Javier",
+            "apellido": "Pardo",
+            "provincia": "Albacete",
+            "correo": "hola@gmail.com",
+            "contrasena": "hola"
+        }
+    ]
+}
