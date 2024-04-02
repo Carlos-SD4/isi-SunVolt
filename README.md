@@ -23,6 +23,8 @@ Estos dos archivos no requieren ningún token para su ejecución. Simplemente pu
 $ python NREL.py
 $ python REData.py
 
+Para la api NREL cabe recordar que hay un numero limitado de peticiones por lo que habra un momento en el que la aplicacion no vaya
+
 ### OpenWeatherMap.py
 Para este archivo, necesitarás registrarte y obtener un token. Sigue estos pasos:
 1. Ve a la página web de OpenWeatherMap y regístrate para obtener una cuenta.
