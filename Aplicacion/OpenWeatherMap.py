@@ -1,9 +1,12 @@
-import requests
+from flask import Flask, jsonify, request
 from datetime import datetime, timedelta
 from colorama import Fore, Style
+import requests
+
+app = Flask(__name__)
 
 def obtener_tiempo(provincia):
-    API_KEY = "tu_api_key"
+    API_KEY = "cfe4345974400a6d38f5b383b86adb87"
     URL = "http://api.openweathermap.org/data/2.5/forecast"
 
     parametros = {
@@ -20,6 +23,8 @@ def obtener_tiempo(provincia):
         lista_predicciones = data['list']
 
         fecha_actual = datetime.now()
+
+        predicciones = []
 
         for prediccion in lista_predicciones:
             fecha_prediccion = datetime.strptime(prediccion['dt_txt'], '%Y-%m-%d %H:%M:%S')
@@ -40,11 +45,21 @@ def obtener_tiempo(provincia):
                 else:
                     color_radiacion = ''
                 
-                # Imprimir resultados
-                print(f"Fecha: {fecha_prediccion}, Temperatura: {temperatura}°C, Humedad: {humedad}%, Nubosidad: {nubosidad}%, Probabilidad de Lluvia: {probabilidad_lluvia}%, Radiación Solar Estimada: {color_radiacion}{radiacion_estimada} W/m^2{Style.RESET_ALL}")
-        print("Predicciones para los próximos 7 días mostradas.")
+                # Crear diccionario con la información de la predicción
+                prediccion_info = {
+                    'fecha': fecha_prediccion,
+                    'temperatura': temperatura,
+                    'humedad': humedad,
+                    'nubosidad': nubosidad,
+                    'probabilidad_lluvia': probabilidad_lluvia,
+                    'radiacion_solar': radiacion_estimada
+                }
+
+                predicciones.append(prediccion_info)
+
+        return predicciones
     else:
-        print(f"Error al obtener datos meteorológicos para la provincia: {provincia}")
+        return []
 
 def estimar_radiacion_solar(nubosidad):
     # Coeficiente de corrección arbitrario para la nubosidad (este valor puede ajustarse según sea necesario)
@@ -58,6 +73,5 @@ def estimar_radiacion_solar(nubosidad):
     
     return radiacion_estimada
 
-if __name__ == "__main__":
-    provincia = input("Ingrese el nombre de la provincia: ")
-    obtener_tiempo(provincia)
+if __name__ == '__main__':
+    app.run(debug=True)

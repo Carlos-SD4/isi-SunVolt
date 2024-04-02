@@ -1,1 +1,511 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SunVolt</title>
+    <link rel="stylesheet" href="/static/styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-U6pRJgK1gaXieF74K69oZgbZnLEtaHqQ3l3uT8+QlHWDqQu4YvABdoThy/HPTvQ/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .iphone-frame {
+            position: relative;
+            width: 400px;
+            height: 800px;
+            margin: 50px auto;
+            background-color: #f0f8ff;
+            border: 2px solid black;
+            border-radius: 40px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .iphone-content {
+            padding: 20px;
+            height: calc(100% - 50px);
+            overflow-y: auto;
+        }
+
+        .iphone-content h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            padding: 10px;
+            border: 1px solid black;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        /* Estilos para la imagen de perfil */
+        .profile-image {
+            position: absolute;
+            top: 46px; /* Ajusta la posición vertical */
+            left: 83%;
+            right: 10px; /* Ajusta la posición horizontal */
+            width: 45px; /* Ajusta el ancho de la imagen */
+            height: 35px; /* Ajusta la altura de la imagen */
+            cursor: pointer; /* Cambia el cursor al pasar por encima */
+        }
+
+        /* Estilos de los campos de entrada */
+        .iphone-content select {
+            width: 100%; /* Ajusta el ancho del combobox */
+            margin-bottom: 7px; /* Espacio entre los campos de entrada */
+            padding: 7px; /* Añade espacio interno al combobox */
+            box-sizing: border-box; /* Incluye el relleno en el tamaño total */
+            border: 1px solid #ccc; /* Borde del combobox */
+            border-radius: 5px; /* Borde redondeado */
+            font-size: 13px; /* Tamaño de la letra */
+        }
+        .prediction {
+            display: none; /* Oculta el contenido de la predicción por defecto */
+            padding: 6px; /* Añade espacio interno al contenido */
+            border: 1px solid #ccc; /* Borde de la predicción */
+            border-radius: 5px; /* Borde redondeado */
+            background-color: #f9f9f9; /* Color de fondo */
+            font-size: 11px; /* Tamaño de la letra */
+            margin-bottom: 8px; /* Espacio entre predicciones */
+        }
+        /* Estilos del footer menu */
+        .footer-menu {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: gray;
+            padding: 5px 0;
+            display: flex;
+            justify-content: center;
+            border-top: 2px solid black; /* Borde superior del footer */
+        }
+
+        .footer-menu a {
+            display: flex;
+            align-items: center;
+            text-decoration: none; /* Eliminar el subrayado */
+            color: white; /* Texto en blanco */
+            font-size: 16px; /* Tamaño de fuente */
+            padding: 2px 10px 5px 5px; /* Añade relleno alrededor del contenido */
+            border: 1px solid white; /* Borde del botón */
+            border-radius: 5px; /* Bordes redondos */
+            margin: 0 10px; /* Aumenta el margen horizontal */
+        }
+
+        .footer-menu a i {
+            margin-right: 5px; /* Margen a la derecha del icono */
+        }
+
+        .footer-menu a span {
+            margin-top: 5px; /* Espacio entre el ícono y el texto */
+        }
+
+        .footer-menu a:hover {
+            background-color: white; /* Color de fondo al pasar el ratón */
+            color: black; /* Cambia el color del texto al pasar el ratón */
+            border-color: black; /* Cambia el color del borde al pasar el ratón */
+        }
+
+
+
+        /* Estilos del botón de recomendaciones */
+        .btn-recommendations {
+            display: block;
+            justify-content: center;
+            background-color: white;
+            color: black;
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 7px 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: -80px; /* Espacio entre el botón y el contenido */
+            margin-left: auto; /* Centra horizontalmente */
+            margin-right: auto; /* Centra horizontalmente */
+            display: block; /* Hace que el botón ocupe todo el ancho disponible */
+            width: fit-content; /* Establece el ancho del botón basado en su contenido */
+        }
+
+        .btn-recommendations:hover {
+            background-color: white;
+        }
+
+        /* Estilos de los círculos */
+        .circles-container {
+            position: absolute;
+            top: 65%; /* Ajusta esto para cambiar la posición vertical del contenedor */
+            left: 50%; /* Ajusta esto para cambiar la posición horizontal del contenedor */
+            transform: translate(-50%, -50%); /* Centra el contenedor */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .circle-row {
+            display: flex;
+            justify-content: space-around;
+            margin: 10px 0; /* Ajusta esto para cambiar el espacio entre las filas */
+        }
+
+        .circle {
+            width: 82px; /* Ajusta esto para cambiar el tamaño de los círculos */
+            height: 82px; /* Ajusta esto para cambiar el tamaño de los círculos */
+            border-radius: 50%;
+            background-color: transparent;
+            border: 5px solid;
+            margin: 0 70px; /* Añade espacio a los lados de los círculos */
+        }
+
+        .circle-solar {
+            background-color: transparent;
+            color: green;
+            border-color: green; /* Borde amarillo */
+        }
+
+        .circle-grid {
+            background-color: transparent;
+            color: yellow;
+            border-color: yellow; /* Borde azul */
+        }
+
+        .circle-total {
+            background-color: transparent;
+            color: red;
+            border-color: red; /* Borde verde */
+        }
+
+        .circle-battery {
+            border-color: #4caf50; /* Verde para representar la batería */
+        }
+
+        .circle-price {
+            border-color: #fbc02d; /* Amarillo dorado para representar el dinero */
+        }
+
+        /* Estilos de la flecha solar */
+        .arrow-solar-total {
+            position: absolute;
+            top: 32%; /* Ajusta esto para cambiar la posición vertical de la flecha */
+            left: 29%; /* Ajusta esto para cambiar la posición horizontal de la flecha */
+            width: 72px; /* Ajusta esto para cambiar el tamaño de la flecha */
+            height: 2px; /* Ajusta esto para cambiar el grosor de la flecha */
+            background-color: green; /* Color de la flecha */
+            transform: rotate(50deg); /* Centra la flecha */
+            animation: electric-green 1s infinite alternate; /* Agrega animación de corriente */
+        }
+
+        /* Estilos de la cabeza de la flecha solar */
+        .arrow-solar-total::before {
+            content: '';
+            position: absolute;
+            top: -4px; /* Ajusta posición vertical de la cabeza de la flecha */
+            left: 64px; /* Ajusta posición horizontal de la cabeza de la flecha */
+            width: 10px; /* Tamaño de la cabeza de la flecha */
+            height: 10px; /* Tamaño de la cabeza de la flecha */
+            background-color: green; /* Color de la cabeza de la flecha */
+            transform: rotate(45deg); /* Girar para formar la cabeza de la flecha */
+            animation: electric-green 1s infinite alternate; /* Agrega animación de corriente */
+        }
+
+        /* Estilos de la flecha grid */
+        .arrow-grid-total {
+            position: absolute;
+            top: 32%; /* Ajusta esto para cambiar la posición vertical de la flecha */
+            right: 29%; /* Ajusta esto para cambiar la posición horizontal de la flecha */
+            width: 72px; /* Ajusta esto para cambiar el tamaño de la flecha */
+            height: 2px; /* Ajusta esto para cambiar el grosor de la flecha */
+            background-color: yellow; /* Color de la flecha */
+            transform: rotate(-50deg); /* Centra la flecha */
+            animation: electric-yellow 1s infinite alternate; /* Agrega animación de corriente */
+        }
+
+        /* Estilos de la cabeza de la flecha grid */
+        .arrow-grid-total::before {
+            content: '';
+            position: absolute;
+            top: -4px; /* Ajusta posición vertical de la cabeza de la flecha */
+            left: -1px; /* Ajusta posición horizontal de la cabeza de la flecha */
+            width: 10px; /* Tamaño de la cabeza de la flecha */
+            height: 10px; /* Tamaño de la cabeza de la flecha */
+            background-color: yellow; /* Color de la cabeza de la flecha */
+            transform: rotate(-45deg); /* Girar para formar la cabeza de la flecha */
+            animation: electric-yellow 1s infinite alternate; /* Agrega animación de corriente */
+        }
+
+
+        /* Animación de la corriente */
+        @keyframes electric-green {
+            from {
+                background-color: green; /* Color inicial de la corriente */
+            }
+            to {
+                background-color: transparent; /* Color final de la corriente */
+            }
+        }
+
+        @keyframes electric-yellow {
+            from {
+                background-color: yellow; /* Color inicial de la corriente */
+            }
+            to {
+                background-color: transparent; /* Color final de la corriente */
+            }
+        }
+
+        /* Estilos del cuadro de información */
+        .circle-tooltip {
+            display: none;
+            position: absolute;
+            background-color: #ddd; /* Fondo gris claro */
+            color: #000; /* Letras negras */
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 15px;
+            z-index: 1; /* Asegura que el tooltip esté por encima de los otros elementos */
+            text-align: center; /* Centra el texto */
+        }
+
+        .circle:hover .circle-tooltip {
+            display: block; /* Muestra el tooltip cuando se pasa el mouse sobre el círculo */
+        }
+
+
+        /* Estilos para el valor dentro del círculo */
+        .circle-value-solar {
+            position: absolute;
+            top: 16%; /* Coloca el valor en la mitad vertical del círculo */
+            left: 25%; /* Coloca el valor en la mitad horizontal del círculo */
+            transform: translate(-50%, -50%); /* Centra el valor en relación con el círculo */
+            font-size: 18px; /* Tamaño de la fuente del valor */
+            color: #000; /* Color del valor */
+            font-weight: bold; /* Aplica negrita al texto */
+        }
+
+        /* Estilos para el valor dentro del círculo */
+        .circle-value-grid {
+            position: absolute;
+            top: 16%; /* Coloca el valor en la mitad vertical del círculo */
+            left: 75%; /* Coloca el valor en la mitad horizontal del círculo */
+            transform: translate(-50%, -50%); /* Centra el valor en relación con el círculo */
+            font-size: 18px; /* Tamaño de la fuente del valor */
+            color: #000; /* Color del valor */
+            font-weight: bold; /* Aplica negrita al texto */
+        }
+
+        /* Estilos para el valor dentro del círculo */
+        .circle-value-total {
+            position: absolute;
+            top: 50%; /* Coloca el valor en la mitad vertical del círculo */
+            left: 50%; /* Coloca el valor en la mitad horizontal del círculo */
+            transform: translate(-50%, -50%); /* Centra el valor en relación con el círculo */
+            font-size: 18px; /* Tamaño de la fuente del valor */
+            color: #000; /* Color del valor */
+            font-weight: bold; /* Aplica negrita al texto */
+        }
+
+        .circle-value-bateria {
+            position: absolute;
+            top: 83%; /* Coloca el valor en la mitad vertical del círculo */
+            left: 26%; /* Coloca el valor en la mitad horizontal del círculo */
+            transform: translate(-50%, -50%); /* Centra el valor en relación con el círculo */
+            font-size: 18px; /* Tamaño de la fuente del valor */
+            color: #000; /* Color del valor */
+            font-weight: bold; /* Aplica negrita al texto */
+        }
+
+        .circle-value-energia {
+            position: absolute;
+            top: 83%; /* Coloca el valor en la mitad vertical del círculo */
+            left: 75%; /* Coloca el valor en la mitad horizontal del círculo */
+            transform: translate(-50%, -50%); /* Centra el valor en relación con el círculo */
+            font-size: 18px; /* Tamaño de la fuente del valor */
+            color: #000; /* Color del valor */
+            font-weight: bold; /* Aplica negrita al texto */
+        }
+
+            /* Estilo para el botón de la página actual */
+        .current-page {
+            pointer-events: none; /* Deshabilita los eventos de puntero */
+            background-color: gray !important; /* Cambia el color de fondo */
+            color: white !important; /* Cambia el color del texto */
+            border-color: gray !important; /* Cambia el color del borde */
+        }
+
+        /* Estilos para el círculo de energía solar */
+        .circle-solar::after {
+            content: "C. Placa"; /* Nombre del círculo */
+            position: absolute;
+            bottom: 210px; /* Ajusta la posición vertical del nombre */
+            left: 25%; /* Centra horizontalmente */
+            transform: translateX(-50%); /* Centra horizontalmente */
+            color: black; /* Color del texto */
+            font-size: 14px; /* Tamaño del texto */
+            font-weight: bold; /* Aplica negrita al texto */
+        }
+
+        /* Estilos para el círculo de energía de la red eléctrica */
+        .circle-grid::after {
+            content: "C. Red Eléctrica"; /* Nombre del círculo */
+            position: absolute;
+            bottom: 210px; /* Ajusta la posición vertical del nombre */
+            left: 74%; /* Centra horizontalmente */
+            transform: translateX(-50%); /* Centra horizontalmente */
+            font-size: 14px; /* Tamaño del texto */
+            color: black; /* Color del texto */
+            font-weight: bold; /* Aplica negrita al texto */
+        }
+
+        /* Estilos para el círculo de consumo total de energía */
+        .circle-total::after {
+            content: "C. Total Energía"; /* Nombre del círculo */
+            position: absolute;
+            bottom: 100px; /* Ajusta la posición vertical del nombre */
+            left: 50%; /* Centra horizontalmente */
+            transform: translateX(-50%); /* Centra horizontalmente */
+            color: black; /* Color del texto */
+            font-size: 14px; /* Tamaño del texto */
+            font-weight: bold; /* Aplica negrita al texto */
+        }
+
+        /* Estilos para el círculo del estado de la batería */
+        .circle-battery::after {
+            content: "Batería"; /* Nombre del círculo */
+            position: absolute;
+            bottom: -10px; /* Ajusta la posición vertical del nombre */
+            left: 25%; /* Centra horizontalmente */
+            transform: translateX(-50%); /* Centra horizontalmente */
+            color: black; /* Color del texto */
+            font-size: 14px; /* Tamaño del texto */
+            font-weight: bold; /* Aplica negrita al texto */
+        }
+
+        /* Estilos para el círculo del costo de la energía */
+        .circle-price::after {
+            content: "Precio Luz"; /* Nombre del círculo */
+            position: absolute;
+            bottom: -10px; /* Ajusta la posición vertical del nombre */
+            left: 75%; /* Centra horizontalmente */
+            transform: translateX(-50%); /* Centra horizontalmente */
+            color: black; /* Color del texto */
+            font-size: 14px; /* Tamaño del texto */
+            font-weight: bold; /* Aplica negrita al texto */
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="iphone-frame">
+        <div class="iphone-content">
+            <div class="container">
+                <h1>Pagina principal</h1>
+                <a href="../perfil">
+                    <img src="/static/images/Perfil.png" alt="Perfil" class="profile-image">
+                </a>
+                <div class="controls">
+                    <select id="date-selector">
+                        <option value="" disabled selected>Selecciona una fecha</option>
+                        {% for prediccion in predicciones %}
+                        <option value="{{ prediccion.fecha.strftime('%Y-%m-%d %H:%M:%S') }}">{{ prediccion.fecha.strftime('%Y-%m-%d %H:%M:%S') }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="stats" id="weather-stats">
+                    {% for prediccion in predicciones %}
+                    <div class="prediction" id="{{ prediccion.fecha.strftime('%Y-%m-%d %H:%M:%S') }}" style="display: none;">
+                        <h2>{{ prediccion.fecha.strftime('%Y-%m-%d %H:%M:%S') }}</h2>
+                        <p>Temperatura: {{ prediccion.temperatura }}°C</p>
+                        <p>Humedad: {{ prediccion.humedad }}%</p>
+                        <p>Nubosidad: {{ prediccion.nubosidad }}%</p>
+                        <p>Probabilidad de Lluvia: {{ prediccion.probabilidad_lluvia }}%</p>
+                        <p>Radiación Solar Estimada: {{ prediccion.radiacion_solar }} W/m^2</p>
+                    </div>
+                    {% endfor %}
+                </div>
+                <!-- Círculos de consumo -->
+                <div class="circles-container">
+                    <div class="circle-row">
+                        <div class="circle circle-solar" data-tooltip="Este círculo representa la energía solar">
+                            <div class="circle-tooltip">Consumo actual de la plantación solar</div>
+                            <span class="circle-value-solar">{{ produccion }} kWh</span>
+                        </div>
+                        <div class="arrow-solar-total"></div>
+                        <div class="arrow-grid-total"></div>
+                        <div class="circle circle-grid" data-tooltip="Este círculo representa la energía de la red eléctrica">
+                            <div class="circle-tooltip">Consumo de energía de la red eléctrica</div>
+                            <span class="circle-value-grid">{{ consumo_electrico }} kWh</span>
+                        </div>
+                    </div>
+                    <div class="circle-row">
+                        <div class="circle circle-total" data-tooltip="Este círculo representa el consumo total de energía">
+                            <div class="circle-tooltip">Consumo total de energía</div>
+                            <span class="circle-value-total">{{ produccion + consumo_electrico}} kWh</span>
+                        </div>
+                    </div>
+                    <div class="circle-row">
+                        <div class="circle circle-battery" data-tooltip="Este círculo representa el estado de la batería">
+                            <div class="circle-tooltip">Estado de la batería</div>
+                            <span class="circle-value-bateria">{{ bateria }}%</span>
+                        </div>
+                        <div class="arrow"></div>
+                        <div class="circle circle-price" data-tooltip="Este círculo representa el costo de la energía">
+                            <div class="circle-tooltip">Costo de la energía</div>
+                            <span class="circle-value-energia">{{ precio }}€</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fin de círculos -->
+
+            </div>
+        </div>
+        <button class="btn-recommendations" onclick="window.location.href='../recomendaciones'">Recomendaciones</button>
+        <div class="footer-menu">
+            <a href="../estadisticas">
+                <span><i class="fas fa-chart-line"></i></span>
+                <span>Estadísticas</span>
+            </a>
+            <a href="../Principal" class="current-page">
+                <span><i class="fas fa-home"></i></span>
+                <span>Inicio</span>
+            </a>
+            <a href="../mis_dispositivos">
+                <span><i class="fas fa-mobile-alt"></i></span>
+                <span>Dispositivos</span>
+            </a>
+        </div>        
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var selector = document.getElementById('date-selector');
+            var predictions = document.getElementsByClassName('prediction');
+    
+            // Seleccionar la primera opción por defecto
+            selector.selectedIndex = 1; // Cambiar a 1 si la opción "Selecciona una fecha" es la primera opción
+    
+            // Mostrar la primera predicción correspondiente
+            predictions[0].style.display = 'block';
+    
+            selector.addEventListener('change', function() {
+                var selectedDate = this.value;
+                for (var i = 0; i < predictions.length; i++) {
+                    if (predictions[i].id === selectedDate || (i === 0 && selectedDate === "")) {
+                        predictions[i].style.display = 'block';
+                    } else {
+                        predictions[i].style.display = 'none';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
