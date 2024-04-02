@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estadísticas de Consumo - SunVolt</title>
+    <title>Perfil de Usuario</title>
     <link rel="stylesheet" href="../static/styles/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <style>
-                body {
+        body {
             font-family: Arial, sans-serif; /* Fuente principal */
             background-color: #f2f2f2; /* Color de fondo */
             margin: 0; /* Elimina el margen predeterminado */
@@ -276,78 +276,40 @@
             background-color: #555;
         }
     </style>
+
 </head>
 <body>
 
 <div class="iphone-frame">
     <div class="iphone-content">
-        
-        <h1>Consumo</h1>
-        
-        <!-- Selector de rango de tiempo -->
-        <div class="time-range-selector">
-            <button id="daily">Día</button>
-            <button id="monthly">Mes</button>
-            <button id="yearly">Año</button>
-            <button id="global">Global</button>
-        </div>
-
-        <div class="current-date">
-            <span id="currentDate">Cargando...</span>
-        </div>
-        
-        
-        <!-- Fila de energía para Autoconsumo y Energía Exportada -->
-        <div class="energy-row">
-            <div class="energy-info">
-                <span class="energy-label">Autoconsumo</span>
-                <span class="energy-value green">18,09 kWh</span>
+       <!-- <div class="container">    -->
+        <!-- Aquí comienza la estructura del perfil -->
+            <div class="perfil-header">
+                <img src="../static/images/imagen-perfil.jpg" alt="Imagen de perfil" class="perfil-imagen">
+                <h1 class="perfil-nombre">{{ nombre }}</h1>
             </div>
-            <div class="circle-consumption green">
-                <span>18,19 kWh</span>
+            <div class="perfil-opciones">
+                <button class="perfil-boton" onclick="window.location.href='../info_usuario'">
+                    <i class="fa fa-user" aria-hidden="true"></i> Información Personal
+                </button>
+                <button class="perfil-boton"><i class="fa fa-bell" aria-hidden="true"></i> Notificaciones</button>
+                <button class="perfil-boton"><i class="fa fa-cog" aria-hidden="true"></i> Configuración</button>
             </div>
-            <div class="energy-info">
-                <span class="energy-label">Energía Exportada</span>
-                <span class="energy-value green">0,10 kWh</span>
-            </div>
-        </div>
-        
-        <!-- Fila de energía para Autosuficiencia y Energía Importada -->
-        <div class="energy-row">
-            <div class="energy-info">
-                <span class="energy-label">Autosuficiencia</span>
-                <span class="energy-value orange">18,09 kWh</span>
-            </div>
-            <div class="circle-consumption orange">
-                <span>82,29 kWh</span>
-            </div>
-            <div class="energy-info">
-                <span class="energy-label">Energía Importada</span>
-                <span class="energy-value orange-light">64,20 kWh</span>
-            </div>
-        </div>
-        
-        <!-- Contenedor para el gráfico de Chart.js -->
-        <div class="chart-container">
-            <canvas id="consumptionChart"></canvas>
-        </div>
+        <!-- </div>     -->
+        <!-- Aquí termina la estructura del perfil -->
     </div>
-        <!-- Footer menu (mantenido como estaba originalmente) -->
-        <div class="footer-menu">
-            <a href="../estadisticas">
-                <i class="fas fa-chart-line"></i> Estadísticas
-            </a>
-            <a href="../Principal">
-                <i class="fas fa-home"></i> Inicio
-            </a>
-            <a href="../mis_dispositivos">
-                <i class="fas fa-mobile-alt"></i> Dispositivos
-            </a>
-        </div>
-
-
+    <div class="footer-menu">
+        <a href="../estadisticas">
+            <i class="fas fa-chart-line"></i> Estadísticas
+        </a>
+        <a href="../Principal">
+            <i class="fas fa-home"></i> Inicio
+        </a>
+        <a href="../mis_dispositivos">
+            <i class="fas fa-mobile-alt"></i> Dispositivos
+        </a>
+    </div>
 </div>
 
-<script src="../static/scripts/estadisticas.js"></script>
 </body>
 </html>

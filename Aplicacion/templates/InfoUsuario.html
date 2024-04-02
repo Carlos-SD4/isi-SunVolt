@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información del Usuario</title>
+    <link rel="stylesheet" href="../static/styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <style>
+                body {
+            font-family: Arial, sans-serif; /* Fuente principal */
+            background-color: #f2f2f2; /* Color de fondo */
+            margin: 0; /* Elimina el margen predeterminado */
+            padding: 0; /* Elimina el relleno predeterminado */
+        }
+
+        /* Estilos del marco del iPhone */
+        .iphone-frame {
+            position: relative; /* Posición relativa para que los elementos internos se posicionen en relación con este contenedor */
+            width: 400px; /* Tamaño del marco del iPhone */
+            height: 800px; /* Tamaño del marco del iPhone */
+            margin: 50px auto; /* Centra el marco horizontalmente y añade un margen superior */
+            background-color: #f0f8ff; /* Azul muy claro como color de fondo */
+            border: 2px solid black; /* Borde negro */
+            border-radius: 40px; /* Borde redondeado del marco del iPhone */
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); /* Sombra del marco del iPhone */
+            overflow: hidden; /* Oculta cualquier contenido que se desborde del marco del iPhone */
+        }
+
+        .iphone-content {
+            position: absolute;
+            top: 50%; /* Ajusta la posición vertical del contenido dentro del marco */
+            left: 50%; /* Centra el contenido horizontalmente */
+            transform: translate(-50%, -50%); /* Centra el contenido vertical y horizontalmente */
+            text-align: center;
+        }
+
+        .container {
+            max-width: 300px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid black; 
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .iphone-content h1 {
+            font-size: 25px; /* Tamaño del título */
+            margin-bottom: 20px; /* Espacio entre el título y el formulario */
+        }
+
+        /* Estilos de los campos de entrada */
+        .iphone-content input {
+            width: 80%; /* Ajusta el ancho de los campos de entrada */
+            margin-bottom: 20px; /* Espacio entre los campos de entrada */
+            padding: 12px; /* Añade espacio interno a los campos de entrada */
+            box-sizing: border-box; /* Incluye el relleno en el tamaño total */
+            border: 1px solid #ccc; /* Borde del campo de entrada */
+            border-radius: 5px; /* Borde redondeado */
+        }
+
+        /* Estilos del botón de inicio de sesión */
+        .iphone-content button {
+            width: 80%; /* Ajusta el ancho del botón */
+            padding: 12px; /* Tamaño del botón */
+            background-color: #050505; /* Color de fondo del botón */
+            color: #fff; /* Color del texto del botón */
+            border: none; /* Quita el borde del botón */
+            border-radius: 5px; /* Borde redondeado */
+            cursor: pointer;
+            transition: background-color 0.3s; /* Transición suave del color de fondo */
+        }
+
+        /* Estilos del botón de inicio de sesión al pasar el cursor */
+        .iphone-content button:hover {
+            background-color: #0056b3; /* Cambia el color de fondo al pasar el cursor */
+        }
+
+        /* Estilos de la cabecera del perfil */
+        .perfil-header {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #ccc; /* Línea divisoria */
+        }
+
+        .perfil-imagen {
+            display: block;
+            margin: 0 auto; /* Centra la imagen */
+            width: 80px; /* Tamaño de la imagen */
+            height: px; /* Tamaño de la imagen */
+            background-color: #bbb; /* Color de fondo de la imagen */
+            border-radius: 50%; /* Hace la imagen circular */
+            border: 3px solid #fff; /* Borde de la imagen */
+        }
+
+        .perfil-nombre {
+            font-size: 1.5em; /* Tamaño del nombre */
+            margin-top: 10px; /* Espacio arriba del nombre */
+        }
+
+        /* Estilos de los botones del perfil */
+        .perfil-opciones {
+            display: flex; /* Convierte .perfil-opciones en un contenedor flex */
+            flex-direction: column; /* Los elementos se apilan verticalmente */
+            justify-content: space-between; /* Maximiza el espacio entre elementos */
+            height: calc(100% - 40px); /* Altura total menos la cabecera */
+            margin: 20px 0;
+        }
+
+        /* Estilos del botón del perfil con icono */
+        .perfil-boton {
+            display: flex; /* Usa flexbox para alinear el icono y el texto */
+            align-items: center; /* Centra los elementos verticalmente */
+            justify-content: flex-start; /* Alineación al inicio para el texto e icono */
+            width: calc(100% - 40px); /* Ajusta el ancho del botón */
+            margin: 10px auto; /* Espacio arriba y abajo y centra horizontalmente */
+            padding: 15px 30px; /* Espaciado interno, más a la izquierda para el icono */
+            font-size: 0.9em; /* Tamaño del texto */
+            /* Otros estilos del botón... */
+        }
+
+        .perfil-boton i {
+            margin-right: 15px; /* Espacio entre el icono y el texto */
+            font-size: 1.2em; /* Tamaño del icono, ajustable según necesidad */
+        }
+
+        .perfil-boton:hover {
+            background-color: #e9ecef; /* Color de fondo al pasar el cursor */
+        }
+
+        .footer-menu {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: gray;
+            padding: 5px 0;
+            display: flex;
+            justify-content: center;
+            border-top: 2px solid black; /* Borde superior del footer */
+        }
+
+        .footer-menu a {
+            display: flex;
+            align-items: center;
+            text-decoration: none; /* Eliminar el subrayado */
+            color: white; /* Texto en blanco */
+            font-size: 16px; /* Tamaño de fuente */
+            padding: 2px 10px 5px 5px; /* Añade relleno alrededor del contenido */
+            border: 1px solid white; /* Borde del botón */
+            border-radius: 5px; /* Bordes redondos */
+            margin: 0 10px; /* Aumenta el margen horizontal */
+        }
+
+        .footer-menu a i {
+            margin-right: 5px; /* Margen a la derecha del icono */
+        }
+
+        .footer-menu a span {
+            margin-top: 5px; /* Espacio entre el ícono y el texto */
+        }
+
+        .footer-menu a:hover {
+            background-color: white; /* Color de fondo al pasar el ratón */
+            color: black; /* Cambia el color del texto al pasar el ratón */
+            border-color: black; /* Cambia el color del borde al pasar el ratón */
+        }
+
+        /* Estadísticas */
+
+        /* Selector de rango de tiempo */
+        .time-range-selector {
+            display: flex;
+            justify-content: center;
+            gap: 10px; /* Espacio entre botones */
+            padding: 10px 0;
+        }
+
+        .time-range-selector button {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            flex-grow: 1;
+        }
+
+        .time-range-selector button:not(:last-child) {
+            margin-right: 10px;
+        }
+
+        .time-range-selector button.active {
+            background-color: #555;
+        }
+
+        /* Fila de energía con textos y círculos */
+        .energy-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .energy-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-basis: 33.33%;
+        }
+
+        .circle-consumption {
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5em;
+            color: white;
+            margin: 0 10px;
+        }
+
+        .green { background-color: #4CAF50; }
+        .orange { background-color: #FF9800; }
+        .orange-light { background-color: #FFA726; }
+
+        .energy-label {
+            font-size: 0.8em;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .energy-number {
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .current-date {
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        .current-date span {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+
+        .footer-menu {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: gray;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+        }
+        .footer-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px; /* Tamaño de letra reducido */
+            margin: 0 10px;
+        }
+        .footer-menu a:hover {
+            color: white;
+            background-color: #555;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="iphone-frame">
+        <div class="iphone-content">
+           <!-- <div class="container">    -->
+            <div class="info-usuario">
+            <h2>Información Personal</h2>
+            <p><strong>Nombre:</strong> {{ usuario.nombre }}</p>
+            <p><strong>Apellido:</strong> {{ usuario.apellido }}</p>
+            <p><strong>Provincia:</strong> {{ usuario.provincia }}</p>
+            <p><strong>Correo Electrónico:</strong> {{ usuario.correo }}</p>
+        </div>
+        </div>
+        <div class="footer-menu">
+            <a href="../estadisticas">
+                <i class="fas fa-chart-line"></i> Estadísticas
+            </a>
+            <a href="../Principal?provincia=Madrid">
+                <i class="fas fa-home"></i> Inicio
+            </a>
+            <a href="../mis_dispositivos">
+                <i class="fas fa-mobile-alt"></i> Dispositivos
+            </a>
+        </div>
+    </div>
+    
+    </body>
+</html>

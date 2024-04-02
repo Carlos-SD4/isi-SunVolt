@@ -43,6 +43,17 @@
             background-color: #f9f9f9;
         }
 
+        /* Estilos para la imagen de perfil */
+        .profile-image {
+            position: absolute;
+            top: 46px; /* Ajusta la posición vertical */
+            left: 83%;
+            right: 10px; /* Ajusta la posición horizontal */
+            width: 45px; /* Ajusta el ancho de la imagen */
+            height: 35px; /* Ajusta la altura de la imagen */
+            cursor: pointer; /* Cambia el cursor al pasar por encima */
+        }
+
         /* Estilos de los campos de entrada */
         .iphone-content select {
             width: 100%; /* Ajusta el ancho del combobox */
@@ -394,6 +405,9 @@
         <div class="iphone-content">
             <div class="container">
                 <h1>Pagina principal</h1>
+                <a href="../perfil">
+                    <img src="/static/images/Perfil.png" alt="Perfil" class="profile-image">
+                </a>
                 <div class="controls">
                     <select id="date-selector">
                         <option value="" disabled selected>Selecciona una fecha</option>
@@ -450,17 +464,17 @@
 
             </div>
         </div>
-        <button class="btn-recommendations" onclick="window.location.href='../recomendaciones?provincia=Madrid'">Recomendaciones</button>
+        <button class="btn-recommendations" onclick="window.location.href='../recomendaciones'">Recomendaciones</button>
         <div class="footer-menu">
             <a href="../estadisticas">
                 <span><i class="fas fa-chart-line"></i></span>
                 <span>Estadísticas</span>
             </a>
-            <a href="../Principal?provincia={{ provincia }}" class="current-page">
+            <a href="../Principal" class="current-page">
                 <span><i class="fas fa-home"></i></span>
                 <span>Inicio</span>
             </a>
-            <a href="../mis_dispositivos?provincia={{ provincia }}">
+            <a href="../mis_dispositivos">
                 <span><i class="fas fa-mobile-alt"></i></span>
                 <span>Dispositivos</span>
             </a>

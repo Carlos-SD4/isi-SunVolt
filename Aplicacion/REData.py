@@ -2,9 +2,9 @@ import requests
 from datetime import datetime, timedelta
 import pytz
 
-def get_real_time_market_prices(provincia):
+def get_real_time_market_prices():
     # Obtén la fecha y hora actual en la zona horaria de España (CET)
-    tz = pytz.timezone(f'Europe/{provincia}')
+    tz = pytz.timezone(f'Europe/Madrid')
     now = datetime.now(tz)
 
     # Redondea la hora actual al intervalo de una hora hacia abajo
@@ -39,7 +39,7 @@ def get_real_time_market_prices(provincia):
                 price_kwh = price_mwh / 1000
                 return price_kwh
         else:
-            return get_real_time_market_prices('Madrid')  # Intenta obtener datos para Madrid si no hay para la provincia
+            return get_real_time_market_prices()  # Intenta obtener datos para Madrid si no hay para la provincia
     else:
         print("Error al obtener los datos.")
         return None  # Devuelve None en caso de error
