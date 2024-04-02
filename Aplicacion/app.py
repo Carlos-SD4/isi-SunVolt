@@ -8,6 +8,10 @@ from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
+@app.route('/')
+def redirigir_a_inicio_sesion():
+    return redirect(url_for('inicio_sesion'))
+
 @app.route('/InicioSesion', methods=['GET', 'POST'])
 def inicio_sesion():
     if request.method == 'POST':
@@ -94,7 +98,10 @@ def pagina_principal():
 
 @app.route('/mis_dispositivos')
 def mis_dispositivos():
-    return render_template('Dispositivos.html')
+    provincia = request.args.get('provincia')
+    print(provincia)
+    bateria=32
+    return render_template('Dispositivos.html', provincia=provincia, bateria=bateria)
 
 
 @app.route('/recomendaciones')
