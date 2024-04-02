@@ -1,10 +1,10 @@
 import requests
-from datetime import datetime,timedelta
+from datetime import datetime, timedelta
 import pytz
 
-def get_real_time_market_prices():
+def get_real_time_market_prices(provincia):
     # Obtén la fecha y hora actual en la zona horaria de España (CET)
-    tz = pytz.timezone('Europe/Madrid')
+    tz = pytz.timezone(f'Europe/{provincia}')
     now = datetime.now(tz)
 
     # Redondea la hora actual al intervalo de una hora hacia abajo
@@ -27,16 +27,21 @@ def get_real_time_market_prices():
         data = response.json()
         # Extrae los precios del kWh de los datos de la respuesta
         prices = data["included"][0]["attributes"]["values"]
-        for price_info in prices:
-            datetime_str = price_info["datetime"]
-            # Convierte la cadena de fecha y hora en un objeto datetime
-            datetime_obj = datetime.strptime(datetime_str, "%Y-%m-%dT%H:%M:%S.%f%z")
-            # Formatea la fecha y hora en el formato solicitado
-            formatted_datetime = datetime_obj.astimezone(tz).strftime("%Y-%m-%d a las %H:%M %Z")
-            price_mwh = price_info["value"]
-            # Convierte el precio a €/kWh
-            price_kwh = price_mwh / 1000
-            return price_kwh, formatted_datetime  # Devuelve el precio del kWh y la hora actual
+        if prices:
+            for price_info in prices:
+                datetime_str = price_info["datetime"]
+                # Convierte la cadena de fecha y hora en un objeto datetime
+                datetime_obj = datetime.strptime(datetime_str, "%Y-%m-%dT%H:%M:%S.%f%z")
+                # Formatea la fecha y hora en el formato solicitado
+                formatted_datetime = datetime_obj.astimezone(tz).strftime("%Y-%m-%d a las %H:%M %Z")
+                price_mwh = price_info["value"]
+                # Convierte el precio a €/kWh
+                price_kwh = price_mwh / 1000
+                return price_kwh
+        else:
+            return get_real_time_market_prices('Madrid')  # Intenta obtener datos para Madrid si no hay para la provincia
     else:
         print("Error al obtener los datos.")
-        return None, None  # Devuelve None en caso de error
+        return None  # Devuelve None en caso de error
+
+

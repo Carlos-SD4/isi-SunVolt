@@ -125,28 +125,37 @@ body {
     bottom: 0;
     width: 100%;
     background-color: gray;
-    padding: 10px 0;
+    padding: 5px 0;
     display: flex;
     justify-content: center;
+    border-top: 2px solid black; /* Borde superior del footer */
 }
+
 .footer-menu a {
-    color: white;
-    text-decoration: none;
-    font-size: 16px; /* Tamaño de letra reducido */
-    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    text-decoration: none; /* Eliminar el subrayado */
+    color: white; /* Texto en blanco */
+    font-size: 16px; /* Tamaño de fuente */
+    padding: 2px 10px 5px 5px; /* Añade relleno alrededor del contenido */
+    border: 1px solid white; /* Borde del botón */
+    border-radius: 5px; /* Bordes redondos */
+    margin: 0 10px; /* Aumenta el margen horizontal */
 }
+
+.footer-menu a i {
+    margin-right: 5px; /* Margen a la derecha del icono */
+}
+
+.footer-menu a span {
+    margin-top: 5px; /* Espacio entre el ícono y el texto */
+}
+
 .footer-menu a:hover {
-    color: white;
-    background-color: #555;
+    background-color: white; /* Color de fondo al pasar el ratón */
+    color: black; /* Cambia el color del texto al pasar el ratón */
+    border-color: black; /* Cambia el color del borde al pasar el ratón */
 }
-
-/* Estadísticas */
-/* Estadísticas */
-
-/* Estadísticas */
-
-/* Selector de rango de tiempo */
-/* ... Estilos existentes ... */
 
 /* Estadísticas */
 
