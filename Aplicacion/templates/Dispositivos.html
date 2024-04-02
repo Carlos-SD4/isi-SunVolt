@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información del Dispositivo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .iphone-frame {
+            position: relative;
+            width: 400px;
+            height: 800px;
+            margin: 50px auto;
+            background-color: #f0f8ff;
+            border: 2px solid black;
+            border-radius: 40px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .iphone-content {
+            padding: 20px;
+        }
+
+        .iphone-content h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            padding: 10px;
+            border: 1px solid black;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .device {
+            border: 1px solid black; /* Borde negro alrededor de cada dispositivo */
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .device-info h2 {
+            margin-bottom: 10px;
+            font-size: 14px; /* Tamaño de letra reducido */
+        }
+        .device-info h2 .device-name {
+            color: black; /* Nombre del dispositivo en negro */
+        }
+        .device-status {
+            font-size: 12px; /* Tamaño de letra reducido */
+            color: green; /* Color del estado de ejecución (en verde) */
+        }
+        .device-info p {
+            margin: 5px 0;
+            font-size: 12px; /* Tamaño de letra reducido */
+        }
+        /* Estilos del footer menu */
+        .footer-menu {
+            position: absolute;
+            width: 100%;
+            background-color: gray;
+            padding: 5px 0;
+            display: flex;
+            justify-content: center;
+            border-top: 2px solid black; /* Borde superior del footer */
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            bottom: 0px;
+        }
+
+        .footer-menu a {
+            display: flex;
+            align-items: center;
+            text-decoration: none; /* Eliminar el subrayado */
+            color: white; /* Texto en blanco */
+            font-size: 16px; /* Tamaño de fuente */
+            padding: 2px 10px 5px 5px; /* Añade relleno alrededor del contenido */
+            border: 1px solid white; /* Borde del botón */
+            border-radius: 5px; /* Bordes redondos */
+            margin: 0 10px; /* Aumenta el margen horizontal */
+        }
+
+        .footer-menu a i {
+            margin-right: 5px; /* Margen a la derecha del icono */
+        }
+
+        .footer-menu a span {
+            margin-top: 5px; /* Espacio entre el ícono y el texto */
+        }
+
+        .footer-menu a:hover {
+            background-color: white; /* Color de fondo al pasar el ratón */
+            color: black; /* Cambia el color del texto al pasar el ratón */
+            border-color: black; /* Cambia el color del borde al pasar el ratón */
+        }
+
+        .current-page {
+            pointer-events: none; /* Deshabilita los eventos de puntero */
+            background-color: gray !important; /* Cambia el color de fondo */
+            color: white !important; /* Cambia el color del texto */
+            border-color: gray !important; /* Cambia el color del borde */
+        }
+    </style>
+</head>
+<body>
+    <div class="iphone-frame">
+        <div class="iphone-content">
+            <div class="container">
+                <h1>Información del Dispositivo</h1>
+                <div class="device">
+                    <div class="device-info">
+                        <h2><span class="device-name">Batería XYZ</span> <span class="device-status">(En Ejecución)</span></h2>
+                        <p><strong>Tipo de Dispositivo:</strong> Batería</p>
+                        <p><strong>Estado de Carga:</strong> {{ bateria }} %</p>
+                        <p><strong>Energía Cargada Hoy:</strong> 50 kWh</p>
+                        <p><strong>Energía Descargada:</strong> 20 kWh</p>
+                    </div>
+                </div>
+                <div class="device">
+                    <div class="device-info">
+                        <h2><span class="device-name">Sensor de Energía ABC</span> <span class="device-status">(En Ejecución)</span></h2>
+                        <p><strong>Tipo de Dispositivo:</strong> <span style="color: black;">Sensor de Energía</span></p>
+                        <p><strong>Potencia Activa:</strong> 10 kW</p>
+                        <p><strong>Potencia Reactiva:</strong> 5 kVAR</p>
+                        <p><strong>Factor de Potencia:</strong> 0.8</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-menu">
+            <a href="../estadisticas">
+                <i class="fas fa-chart-line"></i> Estadísticas
+            </a>
+            <a href="../Principal?provincia={{ provincia }}">
+                <i class="fas fa-home"></i> Inicio
+            </a>
+            <a href="../mis_dispositivos" class="current-page">
+                <i class="fas fa-mobile-alt"></i> Dispositivos
+            </a>
+        </div>
+    </div>
+</body>
+</html>
