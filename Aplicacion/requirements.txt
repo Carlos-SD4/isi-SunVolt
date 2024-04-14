@@ -1,0 +1,6 @@
+Flask>=2.0.0
+PyJWT==1.7.1
+Flask-SQLAlchemy>= 2.5
+colorama>=0.4.3
+requests>=2.22.0
+pytz>=2019.3

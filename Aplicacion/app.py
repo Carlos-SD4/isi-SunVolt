@@ -1,7 +1,6 @@
 import json
 import os
 import random
-import plotly.graph_objs as go
 from OpenWeatherMap import obtener_tiempo
 from REData import get_real_time_market_prices
 from NREL import obtener_produccion
@@ -206,7 +205,7 @@ def info_usuario():
         return redirect(url_for('inicio_sesion'))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
 
 
 
