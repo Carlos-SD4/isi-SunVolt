@@ -5,7 +5,7 @@ Este proyecto ha sido desarrollado por los siguientes miembros del grupo:
 - Carlos Sánchez Díaz
 - Pablo Díaz Calderón
 
-## Manual de Uso
+## Manual de Uso para sprint 1 y 2
 
 En esta sección, vamos a proporcionar un manual de uso para los tres archivos: **NREL.py**, **REData.py** y **OpenWeatherMap.py**. Este manual te guiará sobre cómo ejecutar estos archivos y cómo configurar cualquier token necesario.
 
@@ -37,4 +37,33 @@ Después de reemplazar el token, puedes ejecutar el archivo `OpenWeatherMap.py` 
 
 $ python OpenWeatherMap.py
 
-Este es un ejemplo básico. Puedes personalizarlo según tus necesidades. ¡Espero que esto te ayude! 😊
+
+## Manual de Uso para sprint 3 y 4
+
+### EJECUCION DE LA IMAGEN DOCKER
+
+Para ejecutar la aplicación utilizando Docker, sigue los siguientes pasos:
+
+1. Abre una terminal.
+
+2. Navega hasta el directorio raíz del proyecto.
+
+3. Asegúrate de tener Docker instalado en tu sistema. Si no lo tienes instalado, consulta la documentación oficial de Docker para obtener instrucciones de instalación.
+
+4. Ejecuta el siguiente comando para construir la imagen Docker utilizando el archivo Dockerfile proporcionado:
+
+    ```bash
+    sudo docker build -f Dockerfile -t sunvolt:latest .
+    ```
+
+   Este comando construirá la imagen Docker utilizando las instrucciones definidas en el archivo Dockerfile y le asignará el nombre `sunvolt` con la etiqueta `latest`.
+
+5. Una vez que la construcción de la imagen haya finalizado con éxito, ejecuta el siguiente comando para iniciar un contenedor Docker a partir de la imagen recién creada:
+
+    ```bash
+    sudo docker run -p 2001:5000 -i sunvolt
+    ```
+
+   Este comando ejecutará un contenedor Docker a partir de la imagen `sunvolt` y lo pondrá en funcionamiento. La opción `-p 2001:5000` mapea el puerto 5000 del contenedor al puerto 2001 del host, lo que permite acceder a la aplicación desde el navegador utilizando el puerto 2001.
+
+6. Una vez que el contenedor esté en funcionamiento, puedes acceder a la aplicación desde tu navegador web ingresando la dirección `http://localhost:2001`.
